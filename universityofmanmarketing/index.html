@@ -3,1103 +3,1050 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Proposal — Joey Zubillaga & Jordan Bowditch</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<title>University of Man — Marketing Audit & Client Journey System | JRZ Consulting Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --parchment: #f5ede0;
-    --parchment-dark: #e8d9c0;
-    --parchment-deep: #d4c4a0;
-    --ink: #1a1510;
-    --ink-soft: #2e2620;
-    --gold: #c9a84c;
-    --gold-light: #e8c96a;
-    --gold-dim: #9a7a30;
-    --crimson: #8b2020;
-    --ash: #6b5f52;
-    --shadow: rgba(26, 21, 16, 0.15);
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink:        #111010;
+    --ink2:       #3a3835;
+    --ink3:       #6b6762;
+    --rule:       #e0ddd7;
+    --page:       #faf9f6;
+    --warm:       #f3f0e8;
+    --navy:       #1a3c5e;
+    --navy-light: #ebf1f7;
+    --teal:       #0f6e56;
+    --teal-light: #e1f5ee;
+    --amber:      #ba7517;
+    --amber-light:#fef5e6;
+    --coral:      #993c1d;
+    --coral-light:#faece7;
+    --purple:     #534ab7;
+    --purple-light:#eeedfe;
+    --gap:        clamp(2rem, 5vw, 5rem);
+  }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background-color: #0e0c09;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    color: var(--ink);
-    overflow-x: hidden;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--page);
+    color: var(--ink2);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* TEXTURE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  .page {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── COVER ── */
-  .cover {
-    min-height: 100vh;
+  /* ── HEADER ───────────────────────────────────────────────── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--page);
+    border-bottom: 1px solid var(--rule);
+    padding: .75rem var(--gap);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 80px 24px;
-    background: linear-gradient(170deg, #0e0c09 0%, #1a1510 50%, #0e0c09 100%);
-    position: relative;
-    overflow: hidden;
+    justify-content: space-between;
   }
-
-  .cover::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cover-ornament {
-    font-family: 'Cinzel Decorative', serif;
-    color: var(--gold-dim);
-    font-size: 11px;
-    letter-spacing: 0.4em;
+  .logo {
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--ink3);
     text-transform: uppercase;
-    margin-bottom: 48px;
-    opacity: 0.7;
+    text-decoration: none;
   }
-
-  .cover-rule {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 48px;
-  }
-
-  .cover-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(13px, 2vw, 16px);
-    font-weight: 400;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 24px;
-  }
-
-  .cover-headline {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(28px, 5vw, 52px);
-    font-weight: 700;
-    color: var(--parchment);
-    line-height: 1.15;
-    margin-bottom: 16px;
-    text-shadow: 0 2px 40px rgba(201,168,76,0.2);
-  }
-
-  .cover-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 2.5vw, 24px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--gold);
-    margin-bottom: 64px;
-    opacity: 0.85;
-  }
-
-  .cover-meta {
+  .logo strong { color: var(--navy); }
+  .nav {
     display: flex;
-    gap: 60px;
-    justify-content: center;
-    flex-wrap: wrap;
+    gap: 2rem;
+    list-style: none;
   }
-
-  .cover-meta-item {
-    text-align: center;
+  .nav a {
+    font-size: .8rem;
+    font-weight: 500;
+    color: var(--ink3);
+    text-decoration: none;
+    letter-spacing: .04em;
+    transition: color .2s;
   }
+  .nav a:hover { color: var(--navy); }
 
-  .cover-meta-label {
-    font-family: 'Cinzel', serif;
-    font-size: 9px;
-    letter-spacing: 0.3em;
+  /* ── HERO ─────────────────────────────────────────────────── */
+  .hero {
+    padding: clamp(4rem, 10vw, 8rem) var(--gap) clamp(3rem, 6vw, 5rem);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+  .hero-left {}
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .15em;
+    color: var(--amber);
     text-transform: uppercase;
-    color: var(--gold-dim);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+  }
+  .eyebrow::before {
+    content: '';
     display: block;
-    margin-bottom: 6px;
+    width: 2rem;
+    height: 1px;
+    background: var(--amber);
   }
-
-  .cover-meta-value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    color: var(--parchment);
-    font-style: italic;
-  }
-
-  /* ── SECTIONS ── */
-  .section {
-    background: var(--parchment);
-    padding: 80px 64px;
-    position: relative;
-  }
-
-  .section:nth-child(even) {
-    background: var(--parchment-dark);
-  }
-
-  .section-dark {
-    background: #13110d;
-    color: var(--parchment);
-    padding: 80px 64px;
-  }
-
-  .section-number {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    display: block;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(20px, 3vw, 28px);
-    font-weight: 600;
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
     color: var(--ink);
-    margin-bottom: 8px;
-    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    letter-spacing: -.02em;
   }
-
-  .section-dark .section-title {
-    color: var(--parchment);
-  }
-
-  .section-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+  .hero h1 em {
     font-style: italic;
-    color: var(--ash);
-    margin-bottom: 40px;
-    font-weight: 400;
+    color: var(--navy);
   }
-
-  .section-dark .section-subtitle {
-    color: var(--gold-dim);
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--ink3);
+    max-width: 44ch;
+    line-height: 1.8;
   }
-
-  .gold-rule {
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-dim));
-    margin-bottom: 40px;
-  }
-
-  p {
-    font-size: clamp(16px, 2vw, 19px);
-    line-height: 1.85;
-    color: var(--ink-soft);
-    margin-bottom: 24px;
-    font-weight: 400;
-  }
-
-  .section-dark p {
-    color: rgba(245, 237, 224, 0.8);
-  }
-
-  p strong {
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  .section-dark p strong {
-    color: var(--gold-light);
-  }
-
-  /* ── OPENING LETTER ── */
-  .letter-indent {
-    padding-left: 32px;
-    border-left: 2px solid var(--gold);
-    margin: 40px 0;
-  }
-
-  .letter-indent p {
-    font-style: italic;
-    font-size: clamp(17px, 2vw, 20px);
-    color: var(--ash);
-  }
-
-  /* ── DIAGNOSTIC SCORES ── */
-  .score-grid {
+  .hero-right {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin: 40px 0;
+    gap: 1rem;
+  }
+  .meta-block {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem 2rem;
+  }
+  .meta-item {}
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: .2rem;
+  }
+  .meta-value {
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin-top: .5rem;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    padding: .3rem .7rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .tag-navy   { background: var(--navy-light);   color: var(--navy);   }
+  .tag-teal   { background: var(--teal-light);   color: var(--teal);   }
+  .tag-amber  { background: var(--amber-light);  color: var(--amber);  }
+  .tag-purple { background: var(--purple-light); color: var(--purple); }
+
+  /* ── SECTION SHELL ────────────────────────────────────────── */
+  .section {
+    padding: var(--gap) var(--gap);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-inner { max-width: 860px; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    color: var(--ink3);
+    letter-spacing: .1em;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -.01em;
+    line-height: 1.2;
+  }
+  .section-sub {
+    font-size: .9rem;
+    color: var(--ink3);
+    margin-top: .4rem;
+    font-style: italic;
   }
 
+  /* ── CALLOUT BOX ──────────────────────────────────────────── */
+  .callout {
+    border-left: 3px solid var(--amber);
+    background: var(--amber-light);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 6px 6px 0;
+    margin: 2rem 0;
+  }
+  .callout p {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink2);
+    line-height: 1.75;
+  }
+  .callout-teal {
+    border-left-color: var(--teal);
+    background: var(--teal-light);
+  }
+
+  /* ── CARD GRID ────────────────────────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .card {
+    background: var(--page);
+    padding: 1.25rem 1.5rem;
+  }
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: .5rem;
+  }
+  .card-body {
+    font-size: .9rem;
+    color: var(--ink2);
+    line-height: 1.65;
+  }
+
+  /* ── SCORE TABLE ──────────────────────────────────────────── */
+  .score-table { margin: 1.5rem 0; }
   .score-row {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 24px;
+    gap: 1.5rem;
+    padding: .65rem 0;
+    border-bottom: 1px solid var(--rule);
   }
-
-  .score-label {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ash);
-  }
-
-  .score-bar-wrap {
+  .score-row:last-child { border-bottom: none; }
+  .score-left {
     display: flex;
     align-items: center;
-    gap: 12px;
-    grid-column: 1 / -1;
+    gap: 1rem;
+    min-width: 0;
   }
-
-  .score-bar-bg {
+  .score-name {
+    font-size: .9rem;
+    color: var(--ink2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .score-bar-wrap {
     flex: 1;
     height: 4px;
-    background: var(--parchment-deep);
+    background: var(--rule);
     border-radius: 2px;
-    overflow: hidden;
+    min-width: 80px;
   }
-
-  .score-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  .score-bar {
+    height: 4px;
     border-radius: 2px;
-    transition: width 1s ease;
   }
-
-  .score-bar-fill.low {
-    background: linear-gradient(90deg, var(--crimson), #b34040);
-  }
-
-  .score-value {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gold-dim);
-    min-width: 36px;
+  .score-bar.high  { background: var(--teal); }
+  .score-bar.mid   { background: var(--amber); }
+  .score-bar.low   { background: var(--coral); }
+  .score-val {
+    font-family: 'DM Mono', monospace;
+    font-size: .8rem;
+    font-weight: 500;
+    min-width: 3rem;
     text-align: right;
   }
+  .score-val.high  { color: var(--teal); }
+  .score-val.mid   { color: var(--amber); }
+  .score-val.low   { color: var(--coral); }
 
-  /* ── PAIN POINTS ── */
-  .pain-grid {
+  /* ── GAP CARDS ────────────────────────────────────────────── */
+  .gap-list { display: flex; flex-direction: column; gap: .75rem; margin: 1.5rem 0; }
+  .gap-card {
+    border-left: 3px solid var(--coral);
+    background: var(--warm);
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
+  }
+  .gap-card-title {
+    font-weight: 500;
+    font-size: .95rem;
+    color: var(--ink);
+    margin-bottom: .3rem;
+  }
+  .gap-card-body {
+    font-size: .875rem;
+    color: var(--ink3);
+    line-height: 1.65;
+  }
+
+  /* ── PHASE SECTIONS ───────────────────────────────────────── */
+  .phase {
+    margin: 3rem 0;
+  }
+  .phase-header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin: 40px 0;
-  }
-
-  @media (max-width: 640px) {
-    .pain-grid { grid-template-columns: 1fr; }
-    .section, .section-dark { padding: 60px 28px; }
-  }
-
-  .pain-card {
-    background: #0e0c09;
-    border: 1px solid rgba(201,168,76,0.15);
-    padding: 32px 28px;
-    position: relative;
-  }
-
-  .pain-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: linear-gradient(180deg, var(--gold), transparent);
-  }
-
-  .pain-card-title {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-
-  .pain-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgba(245,237,224,0.75);
-    margin: 0;
-  }
-
-  /* ── OFFER LADDER ── */
-  .ladder {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: auto 1fr;
     gap: 0;
-    margin: 40px 0;
-    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
   }
-
-  .ladder::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, var(--gold-dim), transparent);
-  }
-
-  .ladder-item {
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 24px;
-    padding: 24px 0;
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-    align-items: start;
-  }
-
-  .ladder-item:last-child {
-    border-bottom: none;
-  }
-
-  .ladder-dot {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--gold-dim);
+  .phase-num {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    color: var(--gold);
-    background: #0e0c09;
-    position: relative;
-    z-index: 1;
-    flex-shrink: 0;
+    width: 3.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
   }
-
-  .ladder-dot.highlight {
-    background: var(--gold);
-    color: #0e0c09;
-    border-color: var(--gold);
+  .phase-text {
+    padding: 1rem 1.5rem;
+  }
+  .phase-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.2rem;
     font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: .2rem;
+  }
+  .phase-sub {
+    font-size: .85rem;
+    opacity: .8;
+  }
+  /* phase color variants */
+  .phase-1 .phase-num,
+  .phase-1 .phase-text { background: var(--navy); color: white; }
+  .phase-2 .phase-num,
+  .phase-2 .phase-text { background: var(--teal); color: white; }
+  .phase-3 .phase-num,
+  .phase-3 .phase-text { background: var(--purple); color: white; }
+
+  .phase-note {
+    font-size: .875rem;
+    font-style: italic;
+    color: var(--ink3);
+    margin-bottom: 1.25rem;
+    padding-left: .5rem;
+    border-left: 2px solid var(--rule);
   }
 
-  .ladder-content {}
-
-  .ladder-label {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
+  /* ── MILESTONE TABLE ──────────────────────────────────────── */
+  .milestone-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+  }
+  .milestone-table thead tr {
+    border-bottom: 2px solid var(--rule);
+  }
+  .milestone-table thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 4px;
+    color: var(--ink3);
+    font-weight: 500;
+    padding: .5rem .75rem .75rem;
+    text-align: left;
   }
-
-  .ladder-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--parchment);
-    margin-bottom: 6px;
+  .milestone-table tbody tr {
+    border-bottom: 1px solid var(--rule);
   }
-
-  .ladder-desc {
-    font-size: 14px;
-    color: rgba(245,237,224,0.6);
-    line-height: 1.6;
-    margin: 0;
+  .milestone-table tbody tr:last-child { border-bottom: none; }
+  .milestone-table tbody tr:nth-child(even) td { background: var(--warm); }
+  .milestone-table td {
+    padding: .9rem .75rem;
+    vertical-align: top;
+    line-height: 1.55;
   }
-
-  .ladder-price {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    color: var(--gold);
-    margin-top: 6px;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── FRAMEWORK COMPARISON ── */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin: 40px 0;
-    background: var(--gold-dim);
-  }
-
-  .compare-col {
-    background: var(--parchment);
-    padding: 40px 32px;
-  }
-
-  .compare-col.right {
-    background: #13110d;
-  }
-
-  .compare-head {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 24px;
-    display: block;
-  }
-
-  .compare-item {
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 16px;
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .compare-item::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold-dim);
-    font-size: 12px;
-  }
-
-  .compare-col p {
-    font-size: 15px;
-    margin-bottom: 16px;
-  }
-
-  .compare-col.right p {
-    color: rgba(245,237,224,0.75);
-  }
-
-  /* ── PONTIFEX SECTION ── */
-  .pontifex-block {
-    background: linear-gradient(135deg, #13110d 0%, #1e1a14 100%);
-    border: 1px solid rgba(201,168,76,0.2);
-    padding: 56px 48px;
-    margin: 40px 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pontifex-block::before {
-    content: 'PONTIFEX';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 80px;
-    color: rgba(201,168,76,0.04);
+  .m-num {
+    font-family: 'DM Mono', monospace;
+    font-size: .75rem;
+    font-weight: 500;
     white-space: nowrap;
-    pointer-events: none;
-    letter-spacing: 0.2em;
   }
-
-  .pontifex-block p {
-    position: relative;
-    z-index: 1;
+  .m-stage {
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
   }
+  .m-action { color: var(--ink2); }
+  .m-deliverable { color: var(--ink3); font-style: italic; }
+  .phase-outcome {
+    font-size: .85rem;
+    font-style: italic;
+    padding: .9rem 1.2rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+  }
+  .phase-1 .phase-outcome { background: var(--navy-light);   color: var(--navy);   }
+  .phase-2 .phase-outcome { background: var(--teal-light);   color: var(--teal);   }
+  .phase-3 .phase-outcome { background: var(--purple-light); color: var(--purple); }
 
-  /* ── TERMS ── */
-  .terms-grid {
+  /* ── BUILD LIST ───────────────────────────────────────────── */
+  .build-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin: 40px 0;
+    gap: .5rem 2rem;
+    margin: 1.5rem 0;
+    list-style: none;
   }
-
-  @media (max-width: 640px) {
-    .terms-grid { grid-template-columns: 1fr; }
-    .compare-grid { grid-template-columns: 1fr; }
-  }
-
-  .term-card {
-    border: 1px solid var(--parchment-deep);
-    padding: 32px 28px;
-    background: var(--parchment);
-    position: relative;
-  }
-
-  .term-card-number {
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
-    font-weight: 900;
-    color: var(--parchment-deep);
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    line-height: 1;
-  }
-
-  .term-card-title {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 12px;
-  }
-
-  .term-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 0;
-    color: var(--ink-soft);
-  }
-
-  /* ── PIPELINE FLOW ── */
-  .pipeline {
+  .build-list li {
+    font-size: .9rem;
+    color: var(--ink2);
     display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 40px 0;
+    align-items: baseline;
+    gap: .6rem;
   }
+  .build-list li::before {
+    content: '→';
+    font-size: .8rem;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .build-list li.navy::before   { color: var(--navy);   }
+  .build-list li.teal::before   { color: var(--teal);   }
+  .build-list li.purple::before { color: var(--purple); }
 
-  .pipeline-step {
+  /* ── JOURNEY MAP OVERVIEW ─────────────────────────────────── */
+  .journey-overview {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 0;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2rem 0;
   }
-
-  .pipeline-step:last-child {
-    border-bottom: none;
-  }
-
-  .pipeline-who {
-    padding: 28px 24px;
-    background: rgba(201,168,76,0.06);
-    border-right: 1px solid rgba(201,168,76,0.15);
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
+  .jo-phase { padding: 1.25rem; }
+  .jo-phase.navy   { background: var(--navy-light); }
+  .jo-phase.teal   { background: var(--teal-light); }
+  .jo-phase.purple { background: var(--purple-light); }
+  .jo-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--gold-dim);
+    margin-bottom: .5rem;
+  }
+  .jo-phase.navy   .jo-label { color: var(--navy); }
+  .jo-phase.teal   .jo-label { color: var(--teal); }
+  .jo-phase.purple .jo-label { color: var(--purple); }
+  .jo-title {
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--ink);
+    margin-bottom: .75rem;
+  }
+  .jo-steps { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
+  .jo-steps li {
+    font-size: .83rem;
+    color: var(--ink2);
+    display: flex;
+    align-items: baseline;
+    gap: .5rem;
+  }
+  .jo-steps li .ms {
+    font-family: 'DM Mono', monospace;
+    font-size: .65rem;
+    font-weight: 500;
+  }
+  .jo-phase.navy   .jo-steps li .ms { color: var(--navy); }
+  .jo-phase.teal   .jo-steps li .ms { color: var(--teal); }
+  .jo-phase.purple .jo-steps li .ms { color: var(--purple); }
+
+  /* ── FOOTER ───────────────────────────────────────────────── */
+  .site-footer {
+    padding: 3rem var(--gap);
+    border-top: 1px solid var(--rule);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
-
-  .pipeline-what {
-    padding: 28px 32px;
-  }
-
-  .pipeline-what p {
-    font-size: 15px;
-    margin: 0;
-    line-height: 1.65;
-    color: rgba(245,237,224,0.8);
-  }
-
-  /* ── CLOSING ── */
-  .closing {
-    background: #0e0c09;
-    padding: 100px 64px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .closing::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .closing-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(22px, 4vw, 36px);
-    color: var(--parchment);
-    margin-bottom: 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .closing p {
-    color: rgba(245,237,224,0.7);
-    max-width: 560px;
-    margin: 0 auto 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .closing-sig {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-style: italic;
-    color: var(--gold);
-    margin-top: 56px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .closing-sig-name {
-    font-family: 'Cinzel', serif;
-    font-size: 13px;
-    letter-spacing: 0.3em;
+  .footer-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: .7rem;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-top: 8px;
-    position: relative;
-    z-index: 1;
+    color: var(--ink3);
   }
-
-  /* ── PULLQUOTE ── */
-  .pullquote {
-    border-top: 1px solid var(--gold-dim);
-    border-bottom: 1px solid var(--gold-dim);
-    padding: 40px 0;
-    margin: 48px 0;
-    text-align: center;
-  }
-
-  .pullquote p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(20px, 3vw, 28px);
+  .footer-brand strong { color: var(--navy); }
+  .footer-tag {
+    font-family: 'Libre Baskerville', serif;
     font-style: italic;
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 0;
+    font-size: .875rem;
+    color: var(--ink3);
   }
 
-  .section-dark .pullquote p {
-    color: var(--parchment);
+  /* ── REVEAL ANIMATION ─────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
   }
 
-  /* ── CALLOUT ── */
-  .callout {
-    background: var(--ink);
-    color: var(--parchment);
-    padding: 32px 36px;
-    margin: 32px 0;
-    position: relative;
+  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero-desc { max-width: none; }
+    .build-list { grid-template-columns: 1fr; }
+    .journey-overview { grid-template-columns: 1fr; }
+    .nav { display: none; }
+    .meta-block { grid-template-columns: 1fr 1fr; }
+    .milestone-table { font-size: .8rem; }
+    .milestone-table .m-deliverable { display: none; }
+    .milestone-table thead th:last-child { display: none; }
   }
-
-  .callout::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: var(--gold);
-  }
-
-  .callout p {
-    color: rgba(245,237,224,0.85);
-    margin: 0;
-    font-size: 16px;
-  }
-
-  /* animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .cover > * {
-    animation: fadeUp 0.8s ease forwards;
-  }
-
-  .cover > *:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
-  .cover > *:nth-child(2) { animation-delay: 0.25s; opacity: 0; }
-  .cover > *:nth-child(3) { animation-delay: 0.35s; opacity: 0; }
-  .cover > *:nth-child(4) { animation-delay: 0.45s; opacity: 0; }
-  .cover > *:nth-child(5) { animation-delay: 0.6s; opacity: 0; }
-  .cover > *:nth-child(6) { animation-delay: 0.75s; opacity: 0; }
 </style>
 </head>
 <body>
 
-<!-- COVER -->
-<div class="cover">
-  <div class="cover-ornament">A Proposal for Strategic Partnership</div>
-  <div class="cover-rule"></div>
-  <div class="cover-title">University of Man &nbsp;×&nbsp; Pontifex</div>
-  <div class="cover-headline">The Temple<br>Needs an Interior</div>
-  <div class="cover-sub">What you've built is real. What's missing is the architecture inside it.</div>
-  <div class="cover-meta">
-    <div class="cover-meta-item">
-      <span class="cover-meta-label">Prepared by</span>
-      <span class="cover-meta-value">Joey Zubillaga</span>
+<!-- HEADER -->
+<header class="site-header">
+  <a class="logo" href="#"><strong>JRZ</strong> Consulting Solutions</a>
+  <nav>
+    <ul class="nav">
+      <li><a href="#audit">Audit</a></li>
+      <li><a href="#gaps">Gaps</a></li>
+      <li><a href="#journey">Solution</a></li>
+      <li><a href="#builds">Deliverables</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left reveal">
+    <div class="eyebrow">Case Study</div>
+    <h1>University of Man —<br><em>Marketing Audit &</em><br>Client Journey System</h1>
+    <p class="hero-desc">A full diagnostic of Jordan Bowditch's men's coaching business, followed by a milestone-based client journey system designed to take a prospect from stranger to lifelong community member.</p>
+  </div>
+  <div class="hero-right reveal" style="transition-delay:.15s">
+    <div class="meta-block">
+      <div class="meta-item">
+        <div class="meta-label">Client</div>
+        <div class="meta-value">Jordan Bowditch / UMAN Global</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Prepared by</div>
+        <div class="meta-value">JRZ Consulting Solutions</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Product</div>
+        <div class="meta-value">The Mandate Summit ATX</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Framework</div>
+        <div class="meta-value">Build · Optimize · Activate</div>
+      </div>
     </div>
-    <div class="cover-meta-item">
-      <span class="cover-meta-label">For</span>
-      <span class="cover-meta-value">Jordan Bowditch</span>
-    </div>
-    <div class="cover-meta-item">
-      <span class="cover-meta-label">Date</span>
-      <span class="cover-meta-value">March 2026</span>
+    <div class="tag-row">
+      <span class="tag tag-navy">Marketing Audit</span>
+      <span class="tag tag-teal">Client Journey</span>
+      <span class="tag tag-amber">AI Automation</span>
+      <span class="tag tag-purple">Systems Design</span>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 1: THE STRAIGHT TALK -->
-<div class="section">
-  <div class="page">
-    <span class="section-number">01 &nbsp;/&nbsp; The Honest Opening</span>
-    <h2 class="section-title">I'm not here to attend your event.</h2>
-    <div class="section-subtitle">I'm here because I see something you've built that's incomplete — and I've already built the missing piece.</div>
-    <div class="gold-rule"></div>
-
-    <p>Jordan, I respect what you've created too much to pretend I'm just interested in a ticket. I'm a solo operator, a philosopher, an AI automation builder, and a coach. I'm not your target attendee — I'm a peer. And I'm coming to you as one.</p>
-
-    <p>Over the past several weeks, while we were talking about Florence, I was running a quiet diagnostic of your business. Not because you asked me to. Because that's how I think. I needed to understand what I was potentially walking into — and what I found was a business with genuine brand power, a differentiated voice, and a real community <em>running on almost no operational infrastructure beneath it.</em></p>
-
-    <div class="letter-indent">
-      <p>"The brand assets are strong. The operational and marketing infrastructure is near-zero. This is not a brand problem. It is an execution and systems problem — and that gap is exactly where the highest-leverage intervention lives."</p>
-    </div>
-
-    <p>I'm not showing you this to expose a weakness. I'm showing you this because <strong>I've already built what fills that gap</strong> — and I think what happens when your framework and mine collide is worth a real conversation.</p>
-
-    <p>What follows is that conversation, laid out plainly. The diagnosis. The architecture. The partnership. Take it or leave it — but I think you'll want to read it through.</p>
-  </div>
-</div>
-
-<!-- SECTION 2: THE DIAGNOSIS -->
-<div class="section" style="background: var(--parchment-dark);">
-  <div class="page">
-    <span class="section-number">02 &nbsp;/&nbsp; The Diagnosis</span>
-    <h2 class="section-title">What I found when I looked behind the curtain.</h2>
-    <div class="section-subtitle">Publicly available information only. No inside access needed — the gaps are visible from the street.</div>
-    <div class="gold-rule"></div>
-
-    <p>The information below comes entirely from your public-facing assets — your sales page, your homepage, your social channels, your speaker lineup, your testimonials. No privileged access. No insider knowledge. <strong>The fact that this is visible from the outside is itself part of the diagnosis.</strong></p>
-
-    <div class="score-grid">
-      <div class="score-row">
-        <div class="score-label">Brand voice clarity</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill" style="width:82%"></div></div>
-          <div class="score-value">8.2</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Speaker / social proof quality</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill" style="width:78%"></div></div>
-          <div class="score-value">7.8</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Sales page conversion design</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill" style="width:62%"></div></div>
-          <div class="score-value">6.2</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Homepage depth / nurture value</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:15%"></div></div>
-          <div class="score-value" style="color:var(--crimson)">1.5</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Content funnel (organic)</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:30%"></div></div>
-          <div class="score-value" style="color:var(--crimson)">3.0</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Email list / nurture system</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:20%"></div></div>
-          <div class="score-value" style="color:var(--crimson)">2.0</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Off-season revenue visibility</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:10%"></div></div>
-          <div class="score-value" style="color:var(--crimson)">1.0</div>
-        </div>
-      </div>
-      <div class="score-row">
-        <div class="score-label">Client acquisition automation</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:12%"></div></div>
-          <div class="score-value" style="color:var(--crimson)">1.2</div>
-        </div>
+<!-- ── SECTION 1: BUSINESS MODEL ───────────────────────────── -->
+<section class="section" id="audit">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Business Model Snapshot</div>
+        <div class="section-sub">What Jordan is selling and how the revenue works</div>
       </div>
     </div>
 
-    <p>The pattern is consistent across every metric. Your brand assets — voice, personality, speaker network, community credibility — are genuinely strong. Your operational and marketing infrastructure is near zero. <strong>You are running a high-performing brand on a single-engine plane.</strong></p>
-
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="pain-card-title">The Revenue Cliff</div>
-        <p>30 seats × $2,997 = ~$90K gross ceiling per event. Two events a year is ~$180K gross — before venue, food, speaker fees, and logistics. One bad sales cycle and the business stalls completely. There is no floor beneath this model.</p>
+    <div class="card-grid reveal">
+      <div class="card">
+        <div class="card-label">Entity</div>
+        <div class="card-body">UMAN Global, LLC. Austin, TX. Founded by Jordan Bowditch. 15+ years in men's work. Co-runs Sex &amp; Love Co. with wife Alexa.</div>
       </div>
-      <div class="pain-card">
-        <div class="pain-card-title">The Invisible Funnel</div>
-        <p>Cold follower → ??? → $2,500 Summit. That's the entire acquisition journey. Social content exists but there is no systematic path from Instagram to warm lead to event buyer. Your personality is trapped on Reels.</p>
+      <div class="card">
+        <div class="card-label">Core Product</div>
+        <div class="card-body">The Mandate Summit ATX — 4-day residential men's retreat in Dripping Springs TX. $2,997 public price / $1,500 early commitment. 30-spot cap.</div>
       </div>
-      <div class="pain-card">
-        <div class="pain-card-title">The Dead Homepage</div>
-        <p>universityofman.com is your top-of-funnel asset and it does essentially nothing. Email capture with zero value exchange. No origin story, no social proof, no problem/solution arc. Cold traffic hits it and leaves.</p>
+      <div class="card">
+        <div class="card-label">Revenue Model</div>
+        <div class="card-body">Event tickets + private 1:1 coaching. No visible recurring digital product, course, or membership. Revenue is event-dependent and lumpy.</div>
       </div>
-      <div class="pain-card">
-        <div class="pain-card-title">The Integration Gap</div>
-        <p>You take men into the descent. The event cracks them open. And then they go home — to wives who test them, patterns that reassert, and no structured map for what to do with what just happened. The transformation fades. The Summit becomes a memory.</p>
-      </div>
-    </div>
-
-    <div class="pullquote">
-      <p>"The problem isn't the brand. The problem is that the brand has no ladder to climb and no floor to land on."</p>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 3: THE MISSING LADDER -->
-<div class="section-dark">
-  <div class="page">
-    <span class="section-number" style="color:var(--gold-dim)">03 &nbsp;/&nbsp; The Missing Architecture</span>
-    <h2 class="section-title">Your offer ladder has seven missing rungs.</h2>
-    <div class="section-subtitle">Right now the only way in is through a $2,500 door. That's not a funnel — it's a cliff.</div>
-    <div class="gold-rule"></div>
-
-    <p>Every dollar you make requires you to physically show up. There is no compounding. No leverage. No revenue that works while you sleep. The architecture below is what converts your audience into a self-sustaining business — and every tier below the Summit is money bleeding out of your funnel every single day it doesn't exist.</p>
-
-    <div class="ladder">
-      <div class="ladder-item">
-        <div class="ladder-dot">F</div>
-        <div class="ladder-content">
-          <div class="ladder-label">Free Entry</div>
-          <div class="ladder-title">The Brotherhood Assessment</div>
-          <p class="ladder-desc">Lead magnet. Identifies where the man sits on the Mandate Gap. Delivers Jordan's voice, surfaces the pain, earns the email.</p>
-          <div class="ladder-price">$0 — converts cold traffic to warm leads</div>
-        </div>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-dot">1</div>
-        <div class="ladder-content">
-          <div class="ladder-label">Entry Product</div>
-          <div class="ladder-title">The Temple — Book or Mini-Course</div>
-          <p class="ladder-desc">The DOWN-DOWN-UP framework made accessible. Gives men the map before they ever attend an event. Pre-sells the Summit by letting them taste the depth.</p>
-          <div class="ladder-price">$47 – $97</div>
-        </div>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-dot">2</div>
-        <div class="ladder-content">
-          <div class="ladder-label">Digital Course</div>
-          <div class="ladder-title">FRATERNITY: The 10% Framework</div>
-          <p class="ladder-desc">Full curriculum build of the Four Pillars, the Temple Model, and the initiation arc. Evergreen revenue. Works without Jordan in the room.</p>
-          <div class="ladder-price">$297 – $497</div>
-        </div>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-dot">3</div>
-        <div class="ladder-content">
-          <div class="ladder-label">Recurring Community</div>
-          <div class="ladder-title">University of Man Club</div>
-          <p class="ladder-desc">Monthly group calls, brotherhood container, integration community. Off-season revenue. Converts event buyers into members.</p>
-          <div class="ladder-price">$197/month</div>
-        </div>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-dot highlight">4</div>
-        <div class="ladder-content">
-          <div class="ladder-label">Flagship Event</div>
-          <div class="ladder-title">The Mandate Summit</div>
-          <p class="ladder-desc">The descent. The initiation. Now arrived at by a warm, pre-sold audience who already knows the language, trusts the brand, and has committed to the journey before they walk through the door.</p>
-          <div class="ladder-price">$2,500 — now with a full funnel feeding it</div>
-        </div>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-dot">5</div>
-        <div class="ladder-content">
-          <div class="ladder-label">Integration Layer</div>
-          <div class="ladder-title">Pontifex — Post-Descent Coaching</div>
-          <p class="ladder-desc">The man comes home from the Summit cracked open. He needs a map for what to build. This is where Pontifex lives — the bridge between the fire and the life he returns to.</p>
-          <div class="ladder-price">$5,500 Premium Mandate — or referred to Pontifex directly</div>
-        </div>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-dot">6</div>
-        <div class="ladder-content">
-          <div class="ladder-label">High-Ticket Private</div>
-          <div class="ladder-title">Pre-Emptive Strike Immersion</div>
-          <p class="ladder-desc">Already exists. Now has a fully warmed pipeline feeding it instead of relying on men who happen to be standing at the cliff edge when they find you.</p>
-          <div class="ladder-price">$5,000 – $15,000+</div>
-        </div>
+      <div class="card">
+        <div class="card-label">Pricing Reality</div>
+        <div class="card-body">Public page shows $2,997. FanBasis checkout reveals a $1,500 early-commitment tier plus a $1,000 lodging add-on — two separate platforms, no consolidation.</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 4: THE FRAMEWORK -->
-<div class="section">
-  <div class="page">
-    <span class="section-number">04 &nbsp;/&nbsp; The Framework Alignment</span>
-    <h2 class="section-title">Your Temple has a name. It just doesn't have walls yet.</h2>
-    <div class="section-subtitle">What you called the Temple Model — I've been calling Pontifex. They're the same building.</div>
-    <div class="gold-rule"></div>
-
-    <p>When I read your Temple Model — Body as Foundation, Emotions as Middle Pillar, Mind as the Roof — I wasn't reading something foreign. I was reading a parallel architecture to what I've spent years building inside the Trinity Coaching System. The same sequencing. The same developmental logic. The same conviction that most men's work tries to fix the roof when the foundation is cracked.</p>
-
-    <p>You named the structure. I built the interior.</p>
-
-    <div class="compare-grid">
-      <div class="compare-col">
-        <span class="compare-head">Jordan's Temple Model</span>
-        <div class="compare-item">Body first — the foundation. Energy, nervous system capacity, physical regulation.</div>
-        <div class="compare-item">Emotions as the middle pillar — regulation, resilience, relational range.</div>
-        <div class="compare-item">Mind as the roof — clarity, strategy, vision, leadership.</div>
-        <div class="compare-item">DOWN-DOWN-UP — the Hero's Journey arc, the ancient initiation rite.</div>
-        <div class="compare-item">The descent creates the man. Brotherhood holds the container.</div>
-      </div>
-      <div class="compare-col right">
-        <span class="compare-head" style="color:var(--gold-dim)">The Pontifex / Trinity System</span>
-        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Soul as foundation — the pre-verbal, somatic, instinctual layer beneath language.</div>
-        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Spirit as the middle pillar — relational intelligence, emotional mastery, integration.</div>
-        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Mind as the roof — vision architecture, identity coherence, purposeful action.</div>
-        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Nigredo through Rubedo — alchemical sequencing of descent, dissolution, and reformation.</div>
-        <div class="compare-item" style="color:rgba(245,237,224,0.75)">The Pontifex holds the threshold — bridge-builder between the fire and the life he returns to.</div>
+<!-- ── SECTION 2: IDEAL CLIENT ──────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Ideal Client Profile</div>
+        <div class="section-sub">Reconstructed from copy, testimonials, speaker lineup, and brand voice</div>
       </div>
     </div>
 
-    <div class="pontifex-block">
-      <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:20px; position:relative; z-index:1;">The Gap In Your Framework</p>
-      <p style="color:var(--parchment); font-size:clamp(18px,2.5vw,22px); font-style:italic; line-height:1.7;">You take men into the descent with breathwork, bioenergetics, confession, shadow work. They crack open. They find brothers. They experience something real.<br><br>And then they go home.<br><br><strong style="color:var(--gold-light); font-style:normal;">The Temple Model tells them what to build. Pontifex shows them how to build it — and stands in the doorway while they do.</strong></p>
-    </div>
-
-    <p>The integration layer is the most important and most consistently missing piece in all men's work — including yours. You've even named it yourself: "the spark dies without integration." You watch men come back six months later saying nothing really changed. That's not a Summit failure. That's an architecture failure. There was nowhere for the transformation to land.</p>
-
-    <p>Pontifex is that place.</p>
-  </div>
-</div>
-
-<!-- SECTION 5: THE PIPELINE -->
-<div class="section-dark">
-  <div class="page">
-    <span class="section-number" style="color:var(--gold-dim)">05 &nbsp;/&nbsp; The Partnership Model</span>
-    <h2 class="section-title">Here's how the client flows — and where the money goes.</h2>
-    <div class="section-subtitle">Clean, transparent, no ambiguity.</div>
-    <div class="gold-rule"></div>
-
-    <p>This isn't a trade. It's not a speaking gig. It's a <strong>revenue-generating pipeline</strong> where Jordan focuses on the descent and I hold the integration — and we both get paid at every stage of a man's journey.</p>
-
-    <div class="pipeline">
-      <div class="pipeline-step">
-        <div class="pipeline-who">Jordan's Funnel</div>
-        <div class="pipeline-what">
-          <p>Cold follower finds Jordan through Reels, referral, or rebuilt content funnel. Takes the Brotherhood Assessment, enters welcome sequence, warms to the brand. Buys entry product, joins the club, eventually commits to the Summit.</p>
-        </div>
+    <div class="card-grid reveal">
+      <div class="card">
+        <div class="card-label">Demographics</div>
+        <div class="card-body">Men, mid-20s to mid-40s. Likely single, recently divorced, or relationally unfulfilled. Based in or willing to travel to Austin-adjacent US markets. Has disposable income — the price point self-selects.</div>
       </div>
-      <div class="pipeline-step">
-        <div class="pipeline-who">The Mandate Summit</div>
-        <div class="pipeline-what">
-          <p>Jordan runs the descent. Breathwork, bioenergetics, shadow work, BROlympics. Pontifex Integration Framework is introduced as the named architecture for what comes next — <em>built into the Summit curriculum as the Temple's interior</em>. Men leave with the map.</p>
-        </div>
+      <div class="card">
+        <div class="card-label">Psychographics</div>
+        <div class="card-body">"Nice guys" who've been successful-ish but feel something is missing. Latent emotional intelligence, underdeveloped. Open to somatic/breathwork but allergic to overtly woo framing. Gym-going, podcast-listening, self-improvement-adjacent.</div>
       </div>
-      <div class="pipeline-step">
-        <div class="pipeline-who">The Handoff</div>
-        <div class="pipeline-what">
-          <p>Jordan refers post-Summit men who want structured integration support to Pontifex coaching. This is warm, pre-qualified referral — men who've already done the hard descent work and are hungry for what comes next. Jordan receives a referral fee or revenue share.</p>
-        </div>
-      </div>
-      <div class="pipeline-step">
-        <div class="pipeline-who">Pontifex / Trinity</div>
-        <div class="pipeline-what">
-          <p>I run the integration work — Trinity Coaching System, personalized roadmap, ongoing support. Cash converts at my rate. Jordan gets a completion to his framework and a percentage of every referred client without delivering an additional hour of work.</p>
-        </div>
-      </div>
-      <div class="pipeline-step">
-        <div class="pipeline-who">Co-Creation</div>
-        <div class="pipeline-what">
-          <p>Long-term: a co-authored book or digital course — <em>The Temple</em> — that maps the complete journey from descent to integration. Jordan's voice on the experiential side. My architecture on the structural side. A permanent asset that feeds both businesses.</p>
-        </div>
+      <div class="card">
+        <div class="card-label">Core Pain</div>
+        <div class="card-body">Isolated. Over-relies on romantic partner for emotional needs. Lacks male friendship depth. Successful on paper, hollow in practice.</div>
       </div>
     </div>
 
-    <div class="callout">
-      <p><strong style="color:var(--gold-light);">On the AI infrastructure:</strong> Separately, and not as leverage but as genuine value-add — I build AI automation systems. The operational gaps I found in your business (no intake agent, no CRM, no email nurture, no referral system) are all problems I've already solved for other operators. That work is available as a separate engagement if and when you're ready for it. It's not a condition of this conversation.</p>
+    <div class="callout reveal">
+      <p>"Playfully Sincere Brotherhood" is genuine differentiation — it separates Jordan from the hyper-masculine Andrew Tate lane AND the overly earnest men's therapy lane. He occupies a real third space that few in the market have successfully claimed.</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 6: THE TERMS -->
-<div class="section">
-  <div class="page">
-    <span class="section-number">06 &nbsp;/&nbsp; What I Need to Say Yes</span>
-    <h2 class="section-title">Three non-negotiables. Nothing hidden.</h2>
-    <div class="section-subtitle">I'm not interested in a vague handshake. I'm interested in a real agreement or a clean no.</div>
-    <div class="gold-rule"></div>
-
-    <p>I respect the work you've done too much to waste either of our time with a soft maybe. Here's what I need for this partnership to be worth committing to. These aren't demands — they're the minimum conditions for a genuine, sustainable collaboration.</p>
-
-    <div class="terms-grid">
-      <div class="term-card">
-        <div class="term-card-number">01</div>
-        <div class="term-card-title">Named Framework Credit</div>
-        <p>Pontifex / the integration layer is publicly attributed — in Summit materials, from stage, on the website. Not a footnote. If my name isn't on the work, my leverage evaporates the moment you've absorbed the framework. This is standard co-creator practice, not ego.</p>
-      </div>
-      <div class="term-card">
-        <div class="term-card-number">02</div>
-        <div class="term-card-title">Travel & Lodging Covered</div>
-        <p>I'm not attending as a participant. I'm showing up as infrastructure. Participants pay. Infrastructure gets resourced. Travel and on-site lodging covered by UMAN — full stop. No out-of-pocket from me.</p>
-      </div>
-      <div class="term-card">
-        <div class="term-card-number">03</div>
-        <div class="term-card-title">Revenue Share on Referrals</div>
-        <p>A defined percentage — agreed in writing before the Summit — on every client referred from your ecosystem to Pontifex coaching. And a reciprocal: I refer men ready for the descent to your Summit, credited appropriately.</p>
-      </div>
-      <div class="term-card">
-        <div class="term-card-number">04</div>
-        <div class="term-card-title">Co-Creator Status on Future IP</div>
-        <p>Any book, course, or curriculum that embeds the Pontifex / Trinity framework credits and compensates me as co-creator. Not as a contributor or consultant — as a named partner in the intellectual property.</p>
+<!-- ── SECTION 3: BRAND PRESENCE ────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Brand Presence & Content Output</div>
       </div>
     </div>
 
-    <div class="pullquote">
-      <p>"I have no problem walking away if these conditions aren't met. I say that not as a negotiating tactic — but because I know what I've built and I know what it's worth."</p>
+    <div class="card-grid reveal">
+      <div class="card">
+        <div class="card-label">Website</div>
+        <div class="card-body">Two-page architecture: homepage (email capture only) + Mandate sales page. No blog, no SEO content, no evergreen library. Built on ClickFunnels 2.0.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Social</div>
+        <div class="card-body">Instagram (@jordanbowditch, active Reels), TikTok, Facebook (~6K). No YouTube presence with meaningful audience found. Character: the BROfessional Edu-tainer.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Brand Voice</div>
+        <div class="card-body">Highly distinctive. Irreverent, self-aware, playful. "Austin Fuggin' Texas, Baby." Avoids both toxic-masc and therapy-speak. Genuinely differentiated voice.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Authority</div>
+        <div class="card-body">A-tier speaker network: Elliott Hulse, Hal Elrod, Eben Pagan, JP Sears. 15+ years Austin men's work scene. National Educator at Bulletproof Nutrition for 6 years.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: SCORES ─────────────────────────────────────── -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Marketing Health Scores</div>
+        <div class="section-sub">Estimated from publicly visible assets — 10 = best in class</div>
+      </div>
     </div>
 
-    <p>If these terms feel right to you, the next step is a 30-minute call to confirm scope, timeline, and structure before the Summit. Not a discovery call. A closing call — we either shake hands on something real or we part ways with clarity and mutual respect.</p>
+    <div class="score-table reveal">
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Brand voice clarity</span>
+          <div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div>
+        </div>
+        <span class="score-val high">8.2</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Speaker / social proof quality</span>
+          <div class="score-bar-wrap"><div class="score-bar high" style="width:78%"></div></div>
+        </div>
+        <span class="score-val high">7.8</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Sales page conversion design</span>
+          <div class="score-bar-wrap"><div class="score-bar mid" style="width:62%"></div></div>
+        </div>
+        <span class="score-val mid">6.2</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Homepage depth / nurture value</span>
+          <div class="score-bar-wrap"><div class="score-bar low" style="width:15%"></div></div>
+        </div>
+        <span class="score-val low">1.5</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Content funnel (organic)</span>
+          <div class="score-bar-wrap"><div class="score-bar low" style="width:30%"></div></div>
+        </div>
+        <span class="score-val low">3.0</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Email list / nurture system</span>
+          <div class="score-bar-wrap"><div class="score-bar low" style="width:20%"></div></div>
+        </div>
+        <span class="score-val low">2.0</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Off-season revenue visibility</span>
+          <div class="score-bar-wrap"><div class="score-bar low" style="width:10%"></div></div>
+        </div>
+        <span class="score-val low">1.0</span>
+      </div>
+      <div class="score-row">
+        <div class="score-left">
+          <span class="score-name">Client acquisition automation</span>
+          <div class="score-bar-wrap"><div class="score-bar low" style="width:12%"></div></div>
+        </div>
+        <span class="score-val low">1.2</span>
+      </div>
+    </div>
 
-    <p>Either outcome is a good one.</p>
+    <div class="callout reveal" style="margin-top:2rem">
+      <p>The pattern is consistent: Jordan's brand assets are strong, his operational and marketing infrastructure is near-zero. This is not a brand problem. It is an execution and systems problem — the best kind of gap to walk into.</p>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- CLOSING -->
-<div class="closing">
-  <div class="page" style="position:relative;z-index:1;">
-    <div class="cover-rule"></div>
-    <div class="closing-title">The Bus Was the Entry Point.<br>This Is the Conversation.</div>
-    <p>You said it yourself, Jordan — this meeting might be bigger than the bus. I think you're right. What I'm proposing isn't a trade for a ticket or a vendor arrangement. It's a genuine co-creation between two operators who've been building toward the same architecture from different angles.</p>
-    <p>The Temple has always needed an interior. I've been building it for years without knowing it had your name on the outside.</p>
-    <p>Let's find out if this is the move.</p>
-    <div class="cover-rule" style="margin-top:56px;"></div>
-    <div class="closing-sig">With full sincerity and zero performance,</div>
-    <div class="closing-sig-name" style="margin-top:16px;">Joey Zubillaga</div>
-    <div style="font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--gold-dim); margin-top:8px; letter-spacing:0.1em;">Pontifex &nbsp;·&nbsp; Trinity Coaching System &nbsp;·&nbsp; JRZ Consulting Solutions</div>
-    <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.2em; color:rgba(201,168,76,0.4); margin-top:48px; text-transform:uppercase;">Confidential &nbsp;·&nbsp; Prepared exclusively for Jordan Bowditch</div>
+<!-- ── SECTION 5: GAPS ──────────────────────────────────────── -->
+<section class="section" id="gaps">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Visible Gaps</div>
+        <div class="section-sub">Where the business is losing money and momentum right now</div>
+      </div>
+    </div>
+
+    <div class="gap-list reveal">
+      <div class="gap-card">
+        <div class="gap-card-title">No content funnel</div>
+        <div class="gap-card-body">Social content exists but there's no systematic path from cold follower to warm lead to event buyer. The homepage captures email with zero value exchange — no lead magnet, no welcome sequence. Jordan's personality is his best asset and it's trapped on Instagram.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-title">Revenue is a single cliff</div>
+        <div class="gap-card-body">One or two events per year at 30 seats. At the real blended price (~$1,500–$2,997/seat), gross revenue per event is likely $60–90K before venue, food, speakers, and logistics. One bad sales cycle and the business stalls completely.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-title">No acquisition mechanism</div>
+        <div class="gap-card-body">No visible paid traffic, no SEO content, no referral system, no affiliate network — despite having a speaker lineup full of operators who could be sending warm leads systematically.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-title">Platform fragmentation</div>
+        <div class="gap-card-body">ClickFunnels for the main site. FanBasis for early-commitment checkout. Telegram for community. No CRM connecting them. Jordan is likely managing outreach manually across all three. This is a tax on his time and a leak in the conversion funnel.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-title">No AI or automation infrastructure</div>
+        <div class="gap-card-body">Zero evidence of lead qualification automation, call booking flows, or post-event follow-up sequences. Every handoff is manual — a massive time drain that caps scale at Jordan's personal bandwidth.</div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-card-title">No off-season revenue</div>
+        <div class="gap-card-body">No digital product, no membership, no group program. Revenue stops when events stop. The community he's building has nowhere to live between gatherings.</div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
+<!-- ── SECTION 6: THE SOLUTION ──────────────────────────────── -->
+<section class="section" id="journey">
+  <div class="section-inner" style="max-width:920px">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">The Client Journey System</div>
+        <div class="section-sub">From stranger to brother — nine milestones, three phases, one coherent system</div>
+      </div>
+    </div>
+
+    <div class="callout callout-teal reveal">
+      <p>The goal is simple: take a man who has never heard of University of Man and walk him — step by step — through a journey that ends with him as a loyal, referring community member. Every milestone maps what he experiences and exactly what we build to make that moment happen.</p>
+    </div>
+
+    <!-- Journey overview -->
+    <div class="journey-overview reveal">
+      <div class="jo-phase navy">
+        <div class="jo-label">Phase 1</div>
+        <div class="jo-title">Build the Foundation</div>
+        <ul class="jo-steps">
+          <li><span class="ms">M1</span> Discovers Jordan</li>
+          <li><span class="ms">M2</span> First impression lands</li>
+          <li><span class="ms">M3</span> Raises his hand</li>
+        </ul>
+      </div>
+      <div class="jo-phase teal">
+        <div class="jo-label">Phase 2</div>
+        <div class="jo-title">Optimize the Experience</div>
+        <ul class="jo-steps">
+          <li><span class="ms">M4</span> Wants to know more</li>
+          <li><span class="ms">M5</span> The conversation happens</li>
+          <li><span class="ms">M6</span> He buys his ticket</li>
+        </ul>
+      </div>
+      <div class="jo-phase purple">
+        <div class="jo-label">Phase 3</div>
+        <div class="jo-title">Activate the Framework</div>
+        <ul class="jo-steps">
+          <li><span class="ms">M7</span> The event changes him</li>
+          <li><span class="ms">M8</span> He stays connected</li>
+          <li><span class="ms">M9</span> He becomes a member</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase phase-1 reveal">
+      <div class="phase-header">
+        <div class="phase-num">01</div>
+        <div class="phase-text">
+          <div class="phase-title">Build the Foundation</div>
+          <div class="phase-sub">Create the infrastructure that turns strangers into leads</div>
+        </div>
+      </div>
+      <p class="phase-note">The customer doesn't know Jordan yet. He may find him through a Reel, a friend's mention, or a search. What he finds next either captures him or loses him.</p>
+      <table class="milestone-table">
+        <thead>
+          <tr>
+            <th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-num" style="color:var(--navy)">M1</td>
+            <td class="m-stage">Discovers Jordan</td>
+            <td class="m-action">A man sees Jordan's content — a Reel, a share, a mention — and something resonates. He visits the website for the first time.</td>
+            <td class="m-deliverable">Homepage rebuild: story, origin, social proof, and a genuine lead magnet ("The Brotherhood Assessment" opt-in).</td>
+          </tr>
+          <tr>
+            <td class="m-num" style="color:var(--navy)">M2</td>
+            <td class="m-stage">First Impression Lands</td>
+            <td class="m-action">He reads who Jordan is, recognizes his own pain in the language, and understands immediately what University of Man is about.</td>
+            <td class="m-deliverable">Clear one-page message hierarchy: Problem → Solution → Who it's for → What to do next. No confusion.</td>
+          </tr>
+          <tr>
+            <td class="m-num" style="color:var(--navy)">M3</td>
+            <td class="m-stage">Raises His Hand</td>
+            <td class="m-action">He enters his email — not because he was pressured, but because he was offered something worth having.</td>
+            <td class="m-deliverable">Lead magnet delivery + 5-email welcome sequence. Warm, voice-consistent, no hard sell in the first two emails.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="phase-outcome">Phase 1 outcome: A stranger becomes a named lead with a warm relationship to the brand — before Jordan has spent a minute of his time on them.</div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase phase-2 reveal">
+      <div class="phase-header">
+        <div class="phase-num">02</div>
+        <div class="phase-text">
+          <div class="phase-title">Optimize the Experience</div>
+          <div class="phase-sub">Make every touchpoint feel guided, trustworthy, and earned</div>
+        </div>
+      </div>
+      <p class="phase-note">The lead is warm but not yet committed. He knows the voice. Now he needs to be moved from interest to action — with zero friction and full confidence.</p>
+      <table class="milestone-table">
+        <thead>
+          <tr>
+            <th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-num" style="color:var(--teal)">M4</td>
+            <td class="m-stage">Wants to Know More</td>
+            <td class="m-action">He's been through the email sequence and starts engaging. He opens emails, clicks links, maybe replies. Curious but still evaluating.</td>
+            <td class="m-deliverable">AI intake agent (SMS/call) activates: answers FAQs, surfaces objections, books a discovery conversation automatically.</td>
+          </tr>
+          <tr>
+            <td class="m-num" style="color:var(--teal)">M5</td>
+            <td class="m-stage">The Conversation Happens</td>
+            <td class="m-action">He gets on a call — or receives a structured message sequence — that meets him where he is. He feels heard, not sold to.</td>
+            <td class="m-deliverable">Discovery call framework + qualification rubric. A consistent, low-pressure conversation Jordan (or a future team member) can run.</td>
+          </tr>
+          <tr>
+            <td class="m-num" style="color:var(--teal)">M6</td>
+            <td class="m-stage">He Buys His Ticket</td>
+            <td class="m-action">He registers. The checkout is simple, the confirmation is warm, and he immediately feels like he made the right call.</td>
+            <td class="m-deliverable">Post-purchase sequence: confirmation, countdown, prep content, Telegram onboarding. Buyer's remorse prevention built in.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="phase-outcome">Phase 2 outcome: A warm lead becomes a paying attendee who is already primed for transformation before he walks through the door.</div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase phase-3 reveal">
+      <div class="phase-header">
+        <div class="phase-num">03</div>
+        <div class="phase-text">
+          <div class="phase-title">Activate the Framework</div>
+          <div class="phase-sub">Build the systems that compound — retention, referral, recurring revenue</div>
+        </div>
+      </div>
+      <p class="phase-note">The event is over — and that's where most coaching businesses lose the plot. Phase 3 is what turns a one-time attendee into a lifelong community member and a recurring revenue contributor.</p>
+      <table class="milestone-table">
+        <thead>
+          <tr>
+            <th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-num" style="color:var(--purple)">M7</td>
+            <td class="m-stage">The Event Changes Him</td>
+            <td class="m-action">He attends The Mandate Summit. The experience delivers on the promise. He's connected to brothers, cracked open, and hungry for more.</td>
+            <td class="m-deliverable">Post-event integration sequence (3 emails over 2 weeks). Reflection prompts, community reinforcement, next-step offer.</td>
+          </tr>
+          <tr>
+            <td class="m-num" style="color:var(--purple)">M8</td>
+            <td class="m-stage">He Stays Connected</td>
+            <td class="m-action">He stays active in Telegram, opens Jordan's emails, follows the content — and begins telling other men about it.</td>
+            <td class="m-deliverable">Referral system: structured ask, shareable assets, incentive structure. Speaker affiliate pipeline operational.</td>
+          </tr>
+          <tr>
+            <td class="m-num" style="color:var(--purple)">M9</td>
+            <td class="m-stage">He Becomes a Member</td>
+            <td class="m-action">He joins the ongoing digital community or group program. He's now a recurring contributor — not just an event attendee.</td>
+            <td class="m-deliverable">Digital product launch: monthly group calls, course, or brotherhood membership. Off-season revenue stream established.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="phase-outcome">Phase 3 outcome: A one-time event buyer becomes a community member, a referral source, and a recurring revenue contributor — with no additional acquisition cost.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SECTION 7: DELIVERABLES ───────────────────────────────── -->
+<section class="section" id="builds">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">The Full Build List</div>
+        <div class="section-sub">Ten deliverables across three phases</div>
+      </div>
+    </div>
+
+    <ul class="build-list reveal">
+      <li class="navy">Homepage rebuild + clear messaging hierarchy</li>
+      <li class="teal">AI intake agent (SMS / call qualification flow)</li>
+      <li class="navy">Lead magnet — The Brotherhood Assessment</li>
+      <li class="teal">Discovery call framework + qualification rubric</li>
+      <li class="navy">5-email welcome sequence (brand voice, no hard sell)</li>
+      <li class="teal">Post-purchase sequence + Telegram onboarding</li>
+      <li class="purple">Post-event integration email series (3 emails)</li>
+      <li class="purple">Referral system + speaker affiliate pipeline</li>
+      <li class="purple">Digital product design + pre-sell campaign</li>
+      <li class="purple">90-day content calendar with funnel logic</li>
+    </ul>
+
+    <div class="callout callout-teal reveal" style="margin-top:2.5rem">
+      <p><strong style="font-style:normal">Clarity. Simplicity. Openness.</strong> We don't build complicated systems. We build the right system once, set it up properly, and let it run — so Jordan can stay in his zone of genius and the customer's journey takes care of itself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-brand"><strong>JRZ</strong> Consulting Solutions &nbsp;·&nbsp; Austin, Texas &nbsp;·&nbsp; jrzconsultingsolutions.com</div>
+  <div class="footer-tag">Marketing should feel simple, intentional, and built for growth.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate score bars on reveal
+  document.querySelectorAll('.score-bar').forEach(bar => {
+    const w = bar.style.width;
+    bar.style.width = '0';
+    const barObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => { bar.style.transition = 'width .8s ease'; bar.style.width = w; }, 200);
+          barObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    barObserver.observe(bar);
+  });
+</script>
 </body>
 </html>
