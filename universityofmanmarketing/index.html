@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Proposal — Joey Zubillaga & Jordan Bowditch</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f5ede0;
+    --parchment-dark: #e8d9c0;
+    --parchment-deep: #d4c4a0;
+    --ink: #1a1510;
+    --ink-soft: #2e2620;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-dim: #9a7a30;
+    --crimson: #8b2020;
+    --ash: #6b5f52;
+    --shadow: rgba(26, 21, 16, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #0e0c09;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    background: linear-gradient(170deg, #0e0c09 0%, #1a1510 50%, #0e0c09 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-ornament {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold-dim);
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    opacity: 0.7;
+  }
+
+  .cover-rule {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 48px;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(13px, 2vw, 16px);
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 24px;
+  }
+
+  .cover-headline {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--parchment);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 40px rgba(201,168,76,0.2);
+  }
+
+  .cover-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 64px;
+    opacity: 0.85;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cover-meta-item {
+    text-align: center;
+  }
+
+  .cover-meta-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .cover-meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--parchment);
+    font-style: italic;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    background: var(--parchment);
+    padding: 80px 64px;
+    position: relative;
+  }
+
+  .section:nth-child(even) {
+    background: var(--parchment-dark);
+  }
+
+  .section-dark {
+    background: #13110d;
+    color: var(--parchment);
+    padding: 80px 64px;
+  }
+
+  .section-number {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .section-dark .section-title {
+    color: var(--parchment);
+  }
+
+  .section-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ash);
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  .section-dark .section-subtitle {
+    color: var(--gold-dim);
+  }
+
+  .gold-rule {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.85;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .section-dark p {
+    color: rgba(245, 237, 224, 0.8);
+  }
+
+  p strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .section-dark p strong {
+    color: var(--gold-light);
+  }
+
+  /* ── OPENING LETTER ── */
+  .letter-indent {
+    padding-left: 32px;
+    border-left: 2px solid var(--gold);
+    margin: 40px 0;
+  }
+
+  .letter-indent p {
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--ash);
+  }
+
+  /* ── DIAGNOSTIC SCORES ── */
+  .score-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 40px 0;
+  }
+
+  .score-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .score-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  .score-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    grid-column: 1 / -1;
+  }
+
+  .score-bar-bg {
+    flex: 1;
+    height: 4px;
+    background: var(--parchment-deep);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .score-bar-fill.low {
+    background: linear-gradient(90deg, var(--crimson), #b34040);
+  }
+
+  .score-value {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-dim);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* ── PAIN POINTS ── */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 40px 0;
+  }
+
+  @media (max-width: 640px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .section, .section-dark { padding: 60px 28px; }
+  }
+
+  .pain-card {
+    background: #0e0c09;
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .pain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+
+  .pain-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .pain-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245,237,224,0.75);
+    margin: 0;
+  }
+
+  /* ── OFFER LADDER ── */
+  .ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .ladder::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold-dim), transparent);
+  }
+
+  .ladder-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    align-items: start;
+  }
+
+  .ladder-item:last-child {
+    border-bottom: none;
+  }
+
+  .ladder-dot {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    background: #0e0c09;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .ladder-dot.highlight {
+    background: var(--gold);
+    color: #0e0c09;
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+
+  .ladder-content {}
+
+  .ladder-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 4px;
+  }
+
+  .ladder-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--parchment);
+    margin-bottom: 6px;
+  }
+
+  .ladder-desc {
+    font-size: 14px;
+    color: rgba(245,237,224,0.6);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ladder-price {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold);
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── FRAMEWORK COMPARISON ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 40px 0;
+    background: var(--gold-dim);
+  }
+
+  .compare-col {
+    background: var(--parchment);
+    padding: 40px 32px;
+  }
+
+  .compare-col.right {
+    background: #13110d;
+  }
+
+  .compare-head {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .compare-item {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .compare-item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+    font-size: 12px;
+  }
+
+  .compare-col p {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .compare-col.right p {
+    color: rgba(245,237,224,0.75);
+  }
+
+  /* ── PONTIFEX SECTION ── */
+  .pontifex-block {
+    background: linear-gradient(135deg, #13110d 0%, #1e1a14 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 56px 48px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pontifex-block::before {
+    content: 'PONTIFEX';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 80px;
+    color: rgba(201,168,76,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.2em;
+  }
+
+  .pontifex-block p {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── TERMS ── */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 40px 0;
+  }
+
+  @media (max-width: 640px) {
+    .terms-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  .term-card {
+    border: 1px solid var(--parchment-deep);
+    padding: 32px 28px;
+    background: var(--parchment);
+    position: relative;
+  }
+
+  .term-card-number {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--parchment-deep);
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    line-height: 1;
+  }
+
+  .term-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+  }
+
+  .term-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  /* ── PIPELINE FLOW ── */
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 40px 0;
+  }
+
+  .pipeline-step {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .pipeline-step:last-child {
+    border-bottom: none;
+  }
+
+  .pipeline-who {
+    padding: 28px 24px;
+    background: rgba(201,168,76,0.06);
+    border-right: 1px solid rgba(201,168,76,0.15);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: flex;
+    align-items: center;
+  }
+
+  .pipeline-what {
+    padding: 28px 32px;
+  }
+
+  .pipeline-what p {
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.65;
+    color: rgba(245,237,224,0.8);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    background: #0e0c09;
+    padding: 100px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .closing-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    color: var(--parchment);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing p {
+    color: rgba(245,237,224,0.7);
+    max-width: 560px;
+    margin: 0 auto 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-sig {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 56px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-sig-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── PULLQUOTE ── */
+  .pullquote {
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 40px 0;
+    margin: 48px 0;
+    text-align: center;
+  }
+
+  .pullquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .section-dark .pullquote p {
+    color: var(--parchment);
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 32px 36px;
+    margin: 32px 0;
+    position: relative;
+  }
+
+  .callout::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--gold);
+  }
+
+  .callout p {
+    color: rgba(245,237,224,0.85);
+    margin: 0;
+    font-size: 16px;
+  }
+
+  /* animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cover > * {
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .cover > *:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+  .cover > *:nth-child(2) { animation-delay: 0.25s; opacity: 0; }
+  .cover > *:nth-child(3) { animation-delay: 0.35s; opacity: 0; }
+  .cover > *:nth-child(4) { animation-delay: 0.45s; opacity: 0; }
+  .cover > *:nth-child(5) { animation-delay: 0.6s; opacity: 0; }
+  .cover > *:nth-child(6) { animation-delay: 0.75s; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-ornament">A Proposal for Strategic Partnership</div>
+  <div class="cover-rule"></div>
+  <div class="cover-title">University of Man &nbsp;×&nbsp; Pontifex</div>
+  <div class="cover-headline">The Temple<br>Needs an Interior</div>
+  <div class="cover-sub">What you've built is real. What's missing is the architecture inside it.</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Prepared by</span>
+      <span class="cover-meta-value">Joey Zubillaga</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">For</span>
+      <span class="cover-meta-value">Jordan Bowditch</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Date</span>
+      <span class="cover-meta-value">March 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: THE STRAIGHT TALK -->
+<div class="section">
+  <div class="page">
+    <span class="section-number">01 &nbsp;/&nbsp; The Honest Opening</span>
+    <h2 class="section-title">I'm not here to attend your event.</h2>
+    <div class="section-subtitle">I'm here because I see something you've built that's incomplete — and I've already built the missing piece.</div>
+    <div class="gold-rule"></div>
+
+    <p>Jordan, I respect what you've created too much to pretend I'm just interested in a ticket. I'm a solo operator, a philosopher, an AI automation builder, and a coach. I'm not your target attendee — I'm a peer. And I'm coming to you as one.</p>
+
+    <p>Over the past several weeks, while we were talking about Florence, I was running a quiet diagnostic of your business. Not because you asked me to. Because that's how I think. I needed to understand what I was potentially walking into — and what I found was a business with genuine brand power, a differentiated voice, and a real community <em>running on almost no operational infrastructure beneath it.</em></p>
+
+    <div class="letter-indent">
+      <p>"The brand assets are strong. The operational and marketing infrastructure is near-zero. This is not a brand problem. It is an execution and systems problem — and that gap is exactly where the highest-leverage intervention lives."</p>
+    </div>
+
+    <p>I'm not showing you this to expose a weakness. I'm showing you this because <strong>I've already built what fills that gap</strong> — and I think what happens when your framework and mine collide is worth a real conversation.</p>
+
+    <p>What follows is that conversation, laid out plainly. The diagnosis. The architecture. The partnership. Take it or leave it — but I think you'll want to read it through.</p>
+  </div>
+</div>
+
+<!-- SECTION 2: THE DIAGNOSIS -->
+<div class="section" style="background: var(--parchment-dark);">
+  <div class="page">
+    <span class="section-number">02 &nbsp;/&nbsp; The Diagnosis</span>
+    <h2 class="section-title">What I found when I looked behind the curtain.</h2>
+    <div class="section-subtitle">Publicly available information only. No inside access needed — the gaps are visible from the street.</div>
+    <div class="gold-rule"></div>
+
+    <p>The information below comes entirely from your public-facing assets — your sales page, your homepage, your social channels, your speaker lineup, your testimonials. No privileged access. No insider knowledge. <strong>The fact that this is visible from the outside is itself part of the diagnosis.</strong></p>
+
+    <div class="score-grid">
+      <div class="score-row">
+        <div class="score-label">Brand voice clarity</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill" style="width:82%"></div></div>
+          <div class="score-value">8.2</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Speaker / social proof quality</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill" style="width:78%"></div></div>
+          <div class="score-value">7.8</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Sales page conversion design</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill" style="width:62%"></div></div>
+          <div class="score-value">6.2</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Homepage depth / nurture value</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:15%"></div></div>
+          <div class="score-value" style="color:var(--crimson)">1.5</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Content funnel (organic)</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:30%"></div></div>
+          <div class="score-value" style="color:var(--crimson)">3.0</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Email list / nurture system</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:20%"></div></div>
+          <div class="score-value" style="color:var(--crimson)">2.0</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Off-season revenue visibility</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:10%"></div></div>
+          <div class="score-value" style="color:var(--crimson)">1.0</div>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Client acquisition automation</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg"><div class="score-bar-fill low" style="width:12%"></div></div>
+          <div class="score-value" style="color:var(--crimson)">1.2</div>
+        </div>
+      </div>
+    </div>
+
+    <p>The pattern is consistent across every metric. Your brand assets — voice, personality, speaker network, community credibility — are genuinely strong. Your operational and marketing infrastructure is near zero. <strong>You are running a high-performing brand on a single-engine plane.</strong></p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-card-title">The Revenue Cliff</div>
+        <p>30 seats × $2,997 = ~$90K gross ceiling per event. Two events a year is ~$180K gross — before venue, food, speaker fees, and logistics. One bad sales cycle and the business stalls completely. There is no floor beneath this model.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-title">The Invisible Funnel</div>
+        <p>Cold follower → ??? → $2,500 Summit. That's the entire acquisition journey. Social content exists but there is no systematic path from Instagram to warm lead to event buyer. Your personality is trapped on Reels.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-title">The Dead Homepage</div>
+        <p>universityofman.com is your top-of-funnel asset and it does essentially nothing. Email capture with zero value exchange. No origin story, no social proof, no problem/solution arc. Cold traffic hits it and leaves.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-title">The Integration Gap</div>
+        <p>You take men into the descent. The event cracks them open. And then they go home — to wives who test them, patterns that reassert, and no structured map for what to do with what just happened. The transformation fades. The Summit becomes a memory.</p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <p>"The problem isn't the brand. The problem is that the brand has no ladder to climb and no floor to land on."</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: THE MISSING LADDER -->
+<div class="section-dark">
+  <div class="page">
+    <span class="section-number" style="color:var(--gold-dim)">03 &nbsp;/&nbsp; The Missing Architecture</span>
+    <h2 class="section-title">Your offer ladder has seven missing rungs.</h2>
+    <div class="section-subtitle">Right now the only way in is through a $2,500 door. That's not a funnel — it's a cliff.</div>
+    <div class="gold-rule"></div>
+
+    <p>Every dollar you make requires you to physically show up. There is no compounding. No leverage. No revenue that works while you sleep. The architecture below is what converts your audience into a self-sustaining business — and every tier below the Summit is money bleeding out of your funnel every single day it doesn't exist.</p>
+
+    <div class="ladder">
+      <div class="ladder-item">
+        <div class="ladder-dot">F</div>
+        <div class="ladder-content">
+          <div class="ladder-label">Free Entry</div>
+          <div class="ladder-title">The Brotherhood Assessment</div>
+          <p class="ladder-desc">Lead magnet. Identifies where the man sits on the Mandate Gap. Delivers Jordan's voice, surfaces the pain, earns the email.</p>
+          <div class="ladder-price">$0 — converts cold traffic to warm leads</div>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-dot">1</div>
+        <div class="ladder-content">
+          <div class="ladder-label">Entry Product</div>
+          <div class="ladder-title">The Temple — Book or Mini-Course</div>
+          <p class="ladder-desc">The DOWN-DOWN-UP framework made accessible. Gives men the map before they ever attend an event. Pre-sells the Summit by letting them taste the depth.</p>
+          <div class="ladder-price">$47 – $97</div>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-dot">2</div>
+        <div class="ladder-content">
+          <div class="ladder-label">Digital Course</div>
+          <div class="ladder-title">FRATERNITY: The 10% Framework</div>
+          <p class="ladder-desc">Full curriculum build of the Four Pillars, the Temple Model, and the initiation arc. Evergreen revenue. Works without Jordan in the room.</p>
+          <div class="ladder-price">$297 – $497</div>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-dot">3</div>
+        <div class="ladder-content">
+          <div class="ladder-label">Recurring Community</div>
+          <div class="ladder-title">University of Man Club</div>
+          <p class="ladder-desc">Monthly group calls, brotherhood container, integration community. Off-season revenue. Converts event buyers into members.</p>
+          <div class="ladder-price">$197/month</div>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-dot highlight">4</div>
+        <div class="ladder-content">
+          <div class="ladder-label">Flagship Event</div>
+          <div class="ladder-title">The Mandate Summit</div>
+          <p class="ladder-desc">The descent. The initiation. Now arrived at by a warm, pre-sold audience who already knows the language, trusts the brand, and has committed to the journey before they walk through the door.</p>
+          <div class="ladder-price">$2,500 — now with a full funnel feeding it</div>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-dot">5</div>
+        <div class="ladder-content">
+          <div class="ladder-label">Integration Layer</div>
+          <div class="ladder-title">Pontifex — Post-Descent Coaching</div>
+          <p class="ladder-desc">The man comes home from the Summit cracked open. He needs a map for what to build. This is where Pontifex lives — the bridge between the fire and the life he returns to.</p>
+          <div class="ladder-price">$5,500 Premium Mandate — or referred to Pontifex directly</div>
+        </div>
+      </div>
+      <div class="ladder-item">
+        <div class="ladder-dot">6</div>
+        <div class="ladder-content">
+          <div class="ladder-label">High-Ticket Private</div>
+          <div class="ladder-title">Pre-Emptive Strike Immersion</div>
+          <p class="ladder-desc">Already exists. Now has a fully warmed pipeline feeding it instead of relying on men who happen to be standing at the cliff edge when they find you.</p>
+          <div class="ladder-price">$5,000 – $15,000+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: THE FRAMEWORK -->
+<div class="section">
+  <div class="page">
+    <span class="section-number">04 &nbsp;/&nbsp; The Framework Alignment</span>
+    <h2 class="section-title">Your Temple has a name. It just doesn't have walls yet.</h2>
+    <div class="section-subtitle">What you called the Temple Model — I've been calling Pontifex. They're the same building.</div>
+    <div class="gold-rule"></div>
+
+    <p>When I read your Temple Model — Body as Foundation, Emotions as Middle Pillar, Mind as the Roof — I wasn't reading something foreign. I was reading a parallel architecture to what I've spent years building inside the Trinity Coaching System. The same sequencing. The same developmental logic. The same conviction that most men's work tries to fix the roof when the foundation is cracked.</p>
+
+    <p>You named the structure. I built the interior.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col">
+        <span class="compare-head">Jordan's Temple Model</span>
+        <div class="compare-item">Body first — the foundation. Energy, nervous system capacity, physical regulation.</div>
+        <div class="compare-item">Emotions as the middle pillar — regulation, resilience, relational range.</div>
+        <div class="compare-item">Mind as the roof — clarity, strategy, vision, leadership.</div>
+        <div class="compare-item">DOWN-DOWN-UP — the Hero's Journey arc, the ancient initiation rite.</div>
+        <div class="compare-item">The descent creates the man. Brotherhood holds the container.</div>
+      </div>
+      <div class="compare-col right">
+        <span class="compare-head" style="color:var(--gold-dim)">The Pontifex / Trinity System</span>
+        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Soul as foundation — the pre-verbal, somatic, instinctual layer beneath language.</div>
+        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Spirit as the middle pillar — relational intelligence, emotional mastery, integration.</div>
+        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Mind as the roof — vision architecture, identity coherence, purposeful action.</div>
+        <div class="compare-item" style="color:rgba(245,237,224,0.75)">Nigredo through Rubedo — alchemical sequencing of descent, dissolution, and reformation.</div>
+        <div class="compare-item" style="color:rgba(245,237,224,0.75)">The Pontifex holds the threshold — bridge-builder between the fire and the life he returns to.</div>
+      </div>
+    </div>
+
+    <div class="pontifex-block">
+      <p style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:20px; position:relative; z-index:1;">The Gap In Your Framework</p>
+      <p style="color:var(--parchment); font-size:clamp(18px,2.5vw,22px); font-style:italic; line-height:1.7;">You take men into the descent with breathwork, bioenergetics, confession, shadow work. They crack open. They find brothers. They experience something real.<br><br>And then they go home.<br><br><strong style="color:var(--gold-light); font-style:normal;">The Temple Model tells them what to build. Pontifex shows them how to build it — and stands in the doorway while they do.</strong></p>
+    </div>
+
+    <p>The integration layer is the most important and most consistently missing piece in all men's work — including yours. You've even named it yourself: "the spark dies without integration." You watch men come back six months later saying nothing really changed. That's not a Summit failure. That's an architecture failure. There was nowhere for the transformation to land.</p>
+
+    <p>Pontifex is that place.</p>
+  </div>
+</div>
+
+<!-- SECTION 5: THE PIPELINE -->
+<div class="section-dark">
+  <div class="page">
+    <span class="section-number" style="color:var(--gold-dim)">05 &nbsp;/&nbsp; The Partnership Model</span>
+    <h2 class="section-title">Here's how the client flows — and where the money goes.</h2>
+    <div class="section-subtitle">Clean, transparent, no ambiguity.</div>
+    <div class="gold-rule"></div>
+
+    <p>This isn't a trade. It's not a speaking gig. It's a <strong>revenue-generating pipeline</strong> where Jordan focuses on the descent and I hold the integration — and we both get paid at every stage of a man's journey.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="pipeline-who">Jordan's Funnel</div>
+        <div class="pipeline-what">
+          <p>Cold follower finds Jordan through Reels, referral, or rebuilt content funnel. Takes the Brotherhood Assessment, enters welcome sequence, warms to the brand. Buys entry product, joins the club, eventually commits to the Summit.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-who">The Mandate Summit</div>
+        <div class="pipeline-what">
+          <p>Jordan runs the descent. Breathwork, bioenergetics, shadow work, BROlympics. Pontifex Integration Framework is introduced as the named architecture for what comes next — <em>built into the Summit curriculum as the Temple's interior</em>. Men leave with the map.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-who">The Handoff</div>
+        <div class="pipeline-what">
+          <p>Jordan refers post-Summit men who want structured integration support to Pontifex coaching. This is warm, pre-qualified referral — men who've already done the hard descent work and are hungry for what comes next. Jordan receives a referral fee or revenue share.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-who">Pontifex / Trinity</div>
+        <div class="pipeline-what">
+          <p>I run the integration work — Trinity Coaching System, personalized roadmap, ongoing support. Cash converts at my rate. Jordan gets a completion to his framework and a percentage of every referred client without delivering an additional hour of work.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-who">Co-Creation</div>
+        <div class="pipeline-what">
+          <p>Long-term: a co-authored book or digital course — <em>The Temple</em> — that maps the complete journey from descent to integration. Jordan's voice on the experiential side. My architecture on the structural side. A permanent asset that feeds both businesses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong style="color:var(--gold-light);">On the AI infrastructure:</strong> Separately, and not as leverage but as genuine value-add — I build AI automation systems. The operational gaps I found in your business (no intake agent, no CRM, no email nurture, no referral system) are all problems I've already solved for other operators. That work is available as a separate engagement if and when you're ready for it. It's not a condition of this conversation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: THE TERMS -->
+<div class="section">
+  <div class="page">
+    <span class="section-number">06 &nbsp;/&nbsp; What I Need to Say Yes</span>
+    <h2 class="section-title">Three non-negotiables. Nothing hidden.</h2>
+    <div class="section-subtitle">I'm not interested in a vague handshake. I'm interested in a real agreement or a clean no.</div>
+    <div class="gold-rule"></div>
+
+    <p>I respect the work you've done too much to waste either of our time with a soft maybe. Here's what I need for this partnership to be worth committing to. These aren't demands — they're the minimum conditions for a genuine, sustainable collaboration.</p>
+
+    <div class="terms-grid">
+      <div class="term-card">
+        <div class="term-card-number">01</div>
+        <div class="term-card-title">Named Framework Credit</div>
+        <p>Pontifex / the integration layer is publicly attributed — in Summit materials, from stage, on the website. Not a footnote. If my name isn't on the work, my leverage evaporates the moment you've absorbed the framework. This is standard co-creator practice, not ego.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-card-number">02</div>
+        <div class="term-card-title">Travel & Lodging Covered</div>
+        <p>I'm not attending as a participant. I'm showing up as infrastructure. Participants pay. Infrastructure gets resourced. Travel and on-site lodging covered by UMAN — full stop. No out-of-pocket from me.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-card-number">03</div>
+        <div class="term-card-title">Revenue Share on Referrals</div>
+        <p>A defined percentage — agreed in writing before the Summit — on every client referred from your ecosystem to Pontifex coaching. And a reciprocal: I refer men ready for the descent to your Summit, credited appropriately.</p>
+      </div>
+      <div class="term-card">
+        <div class="term-card-number">04</div>
+        <div class="term-card-title">Co-Creator Status on Future IP</div>
+        <p>Any book, course, or curriculum that embeds the Pontifex / Trinity framework credits and compensates me as co-creator. Not as a contributor or consultant — as a named partner in the intellectual property.</p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <p>"I have no problem walking away if these conditions aren't met. I say that not as a negotiating tactic — but because I know what I've built and I know what it's worth."</p>
+    </div>
+
+    <p>If these terms feel right to you, the next step is a 30-minute call to confirm scope, timeline, and structure before the Summit. Not a discovery call. A closing call — we either shake hands on something real or we part ways with clarity and mutual respect.</p>
+
+    <p>Either outcome is a good one.</p>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="page" style="position:relative;z-index:1;">
+    <div class="cover-rule"></div>
+    <div class="closing-title">The Bus Was the Entry Point.<br>This Is the Conversation.</div>
+    <p>You said it yourself, Jordan — this meeting might be bigger than the bus. I think you're right. What I'm proposing isn't a trade for a ticket or a vendor arrangement. It's a genuine co-creation between two operators who've been building toward the same architecture from different angles.</p>
+    <p>The Temple has always needed an interior. I've been building it for years without knowing it had your name on the outside.</p>
+    <p>Let's find out if this is the move.</p>
+    <div class="cover-rule" style="margin-top:56px;"></div>
+    <div class="closing-sig">With full sincerity and zero performance,</div>
+    <div class="closing-sig-name" style="margin-top:16px;">Joey Zubillaga</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-size:14px; color:var(--gold-dim); margin-top:8px; letter-spacing:0.1em;">Pontifex &nbsp;·&nbsp; Trinity Coaching System &nbsp;·&nbsp; JRZ Consulting Solutions</div>
+    <div style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.2em; color:rgba(201,168,76,0.4); margin-top:48px; text-transform:uppercase;">Confidential &nbsp;·&nbsp; Prepared exclusively for Jordan Bowditch</div>
+  </div>
+</div>
+
+</body>
+</html>
