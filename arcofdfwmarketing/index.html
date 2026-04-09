@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Putts for Progress 2025 - Marketing Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .event-details {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-details h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+
+        .event-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #fff;
+        }
+
+        .event-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .prepared-by {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+        }
+
+        .section-challenge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .section-audience {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .section-strategy {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .section-campaign {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #333;
+        }
+
+        .section-content {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #333;
+        }
+
+        .section-setup {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+
+        .section-tracking {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+        }
+
+        .section-next {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+        }
+
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .revenue-card {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .revenue-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .audience-card {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .audience-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strategy-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .strategy-card {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .strategy-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .week-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .week-card {
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 6px solid #43e97b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .week-card h4 {
+            color: #43e97b;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .week-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .week-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .week-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #43e97b;
+            font-weight: bold;
+        }
+
+        .funnel-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .funnel-step {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .funnel-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .setup-steps {
+            counter-reset: step-counter;
+        }
+
+        .setup-step {
+            background: rgba(255,255,255,0.9);
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 6px solid #a8edea;
+            counter-increment: step-counter;
+            position: relative;
+        }
+
+        .setup-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -20px;
+            top: 20px;
+            background: #a8edea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .setup-step h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .metric-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            display: block;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .action-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .action-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .action-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .action-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .highlight-box h4 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .funnel-step:not(:last-child)::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+        }
+
+        .print-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>🏌️‍♂️ Putts for Progress 2025</h1>
+                <p class="subtitle">Marketing Strategy & Execution Plan</p>
+                
+                <div class="event-details">
+                    <h3>Event Overview</h3>
+                    <div class="event-grid">
+                        <div class="event-item">
+                            <strong>📅 Date & Time</strong>
+                            Thursday, September 25, 2025<br>7:00-9:00 PM CST
+                        </div>
+                        <div class="event-item">
+                            <strong>📍 Location</strong>
+                            Puttshack Addison<br>5100 Belt Line Rd #600
+                        </div>
+                        <div class="event-item">
+                            <strong>🎫 Ticket Price</strong>
+                            $100 per person<br>(All-inclusive experience)
+                        </div>
+                        <div class="event-item">
+                            <strong>🎯 Goal</strong>
+                            $50,000 Total Revenue<br>100 Ticket Sales
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="prepared-by">
+                    <strong>Prepared by:</strong> Joey Zubillaga
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section section-challenge">
+                <h2><span class="section-icon">🎯</span>The Marketing Challenge</h2>
+                
+                <div class="highlight-box">
+                    <h4>Goal: Fill 100 seats and raise $50,000 with zero advertising budget</h4>
+                    <p><strong>The Solution:</strong> Turn every supporter into a marketer using authentic storytelling and referral incentives</p>
+                </div>
+
+                <div class="revenue-grid">
+                    <div class="revenue-card">
+                        <div class="revenue-amount">$10,000</div>
+                        <div>100 tickets × $100</div>
+                    </div>
+                    <div class="revenue-card">
+                        <div class="revenue-amount">$15,000</div>
+                        <div>Raffle sales</div>
+                    </div>
+                    <div class="revenue-card">
+                        <div class="revenue-amount">$25,000</div>
+                        <div>Sponsorships/donations</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-audience print-break">
+                <h2><span class="section-icon">👥</span>Who We're Marketing To</h2>
+                
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <h4>🏠 I/DD Families</h4>
+                        <p><strong>Message:</strong> "You know the struggle - help others"</p>
+                        <p>Parents, siblings, and extended family who understand the journey and want to support community resources.</p>
+                    </div>
+                    <div class="audience-card">
+                        <h4>💼 DFW Professionals</h4>
+                        <p><strong>Message:</strong> "Network while making an impact"</p>
+                        <p>Community-minded professionals seeking networking opportunities with meaningful social impact.</p>
+                    </div>
+                    <div class="audience-card">
+                        <h4>🤝 Community Groups</h4>
+                        <p><strong>Message:</strong> "Perfect group activity for a cause"</p>
+                        <p>Service organizations, religious groups, and social clubs looking for engaging group activities.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Secondary Audiences:</h4>
+                    <p>Previous donors, corporate teams, young professionals, mini-golf enthusiasts</p>
+                </div>
+            </div>
+
+            <div class="section section-strategy">
+                <h2><span class="section-icon">🚀</span>Marketing Strategy + Improved Funnel</h2>
+                
+                <div class="highlight-box">
+                    <h4>Core Message:</h4>
+                    <p><em>"The most fun you can have while making a real difference in your community."</em></p>
+                </div>
+
+                <div class="funnel-flow">
+                    <div class="funnel-step">
+                        <h4>AWARENESS</h4>
+                        <p>Social posts, personal shares, community partnerships</p>
+                    </div>
+                    <div class="funnel-step">
+                        <h4>INTEREST</h4>
+                        <p>"Get event updates" email capture (not ready to buy yet)</p>
+                    </div>
+                    <div class="funnel-step">
+                        <h4>CONSIDERATION</h4>
+                        <p>Email nurture sequence + personal follow-up</p>
+                    </div>
+                    <div class="funnel-step">
+                        <h4>PURCHASE</h4>
+                        <p>Direct ask with urgency + referral incentives</p>
+                    </div>
+                    <div class="funnel-step">
+                        <h4>ADVOCACY</h4>
+                        <p>Referral program turns buyers into promoters</p>
+                    </div>
+                </div>
+
+                <div class="strategy-points">
+                    <div class="strategy-card">
+                        <h4>🎮 Fun Experience</h4>
+                        <p>Unlimited games, food, drinks, prizes</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>❤️ Meaningful Impact</h4>
+                        <p>Direct support for I/DD families</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>💰 Great Value</h4>
+                        <p>$100 gets you everything + chance to win big</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>🤝 Easy Ask</h4>
+                        <p>Bring friends and get rewarded</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-campaign print-break">
+                <h2><span class="section-icon">📅</span>4-Week Campaign Plan + Personal Outreach</h2>
+                
+                <div class="highlight-box">
+                    <h4>Team Commitment:</h4>
+                    <p>Each person posts 3x/week + personally invites 20 specific people</p>
+                </div>
+
+                <div class="week-timeline">
+                    <div class="week-card">
+                        <h4>Week 1: Personal Stories + Lead Capture</h4>
+                        <ul>
+                            <li>Share why The Arc matters to you</li>
+                            <li>Include "Get event updates" link for people not ready to buy</li>
+                            <li>Focus on connection, not selling</li>
+                            <li><strong>Personal task:</strong> Identify your 20 people to personally invite</li>
+                        </ul>
+                    </div>
+                    <div class="week-card">
+                        <h4>Week 2: Show the Impact + Soft Follow-up</h4>
+                        <ul>
+                            <li>Highlight Arc programs and services</li>
+                            <li>Emphasize event value (food, games, prizes)</li>
+                            <li>Follow up with people who signed up for updates</li>
+                            <li><strong>Personal task:</strong> Make 5 phone calls to top prospects</li>
+                        </ul>
+                    </div>
+                    <div class="week-card">
+                        <h4>Week 3: Create Urgency + Direct Asks</h4>
+                        <ul>
+                            <li>"Only 2 weeks left!" messaging</li>
+                            <li>Push referral program hard</li>
+                            <li>"First 50 tickets get bonus raffle entries"</li>
+                            <li><strong>Personal task:</strong> Personal text/call to remaining 15 people</li>
+                        </ul>
+                    </div>
+                    <div class="week-card">
+                        <h4>Week 4: Final Push + Last Chance</h4>
+                        <ul>
+                            <li>Last chance messaging</li>
+                            <li>Share excitement for event</li>
+                            <li>"Only X tickets left" scarcity messaging</li>
+                            <li><strong>Personal task:</strong> Final follow-up with warm leads who haven't bought</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Posting Requirements:</h4>
+                    <p><strong>Schedule:</strong> 7-9am, 11am-1pm, or 6-8pm<br>
+                    <strong>Required:</strong> Event date, ticket link, @TheArcOfDFW, #PuttsForProgress</p>
+                </div>
+            </div>
+
+            <div class="section section-content">
+                <h2><span class="section-icon">📝</span>Ready-to-Use Content Examples + Email Sequences</h2>
+                
+                <div class="highlight-box">
+                    <h4>12 pre-written posts covering all 4 weeks across multiple formats</h4>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Sample Social Media Post (Week 1) - WITH Lead Capture:</h4>
+                    <p style="font-style: italic; padding: 15px; background: rgba(255,255,255,0.3); border-radius: 10px; margin: 15px 0;">
+                        "When my family member was diagnosed with a developmental disability, we were lost trying to find help. The Arc of DFW gave us the resources and support we desperately needed. On September 25th, join me at Putts for Progress - unlimited mini golf, great food, and prizes, all while supporting families like mine. <strong>Want event updates first?</strong> [Email signup link] or get tickets now for $100 at [ticket link]. Bring friends and get extra raffle tickets!"
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>NEW: Lead Nurture Email Sequence (3 emails):</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 8px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff6b35; font-weight: bold;">1</span>
+                            <strong>Email 1</strong> (Day 1): Welcome + event details + personal story
+                        </li>
+                        <li style="padding: 8px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff6b35; font-weight: bold;">2</span>
+                            <strong>Email 2</strong> (Day 7): Arc impact + "still thinking about joining us?"
+                        </li>
+                        <li style="padding: 8px 0; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: #ff6b35; font-weight: bold;">3</span>
+                            <strong>Email 3</strong> (Day 14): Final week + urgency + last chance
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Complete Kit Includes:</h4>
+                    <p>Written posts for Facebook/LinkedIn/Instagram • Instagram story templates • Video scripts • Text message templates • Phone call outlines • <strong>NEW:</strong> Lead capture forms and email sequences</p>
+                </div>
+            </div>
+
+            <div class="section section-setup print-break">
+                <h2><span class="section-icon">⚙️</span>RallyUp Backend Setup Requirements</h2>
+                
+                <div class="setup-steps">
+                    <div class="setup-step">
+                        <h4>Enable RallyUp Email Marketing</h4>
+                        <p>RallyUp Email Marketing is powered by ActiveCampaign and allows you to email up to 1,000 contacts. Go to Settings → Email Marketing → Enable Email Automation</p>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <h4>Create Lead Capture Forms</h4>
+                        <p><strong>Purpose:</strong> Capture emails before asking for $100 purchase<br>
+                        Create "Event Updates" signup form and embed code for website/social media</p>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <h4>Build Email Automation Workflows</h4>
+                        <p><strong>Workflow 1:</strong> Lead Nurture Sequence (For email signups)<br>
+                        <strong>Workflow 2:</strong> Post-Purchase Follow-up<br>
+                        <strong>Workflow 3:</strong> Abandoned Cart Recovery</p>
+                    </div>
+                    
+                    <div class="setup-step">
+                        <h4>Configure Additional Features</h4>
+                        <p>Facebook event integration • Referral tracking setup • Analytics dashboard • Contact management and segmentation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-tracking">
+                <h2><span class="section-icon">📊</span>Success Tracking + Funnel Metrics</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-number">$50,000</span>
+                        <div class="metric-label">Total Revenue Goal</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">100</span>
+                        <div class="metric-label">Ticket Sales Target</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">300</span>
+                        <div class="metric-label">Email Signups Goal</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">33%</span>
+                        <div class="metric-label">Email → Ticket Conversion</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">40%+</span>
+                        <div class="metric-label">Email Open Rate Goal</div>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-number">15%</span>
+                        <div class="metric-label">Personal Invite Conversion</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Weekly Check-ins Track:</h4>
+                    <p>Ticket sales progress • Email list growth and engagement rates • Personal outreach completion by team members • Social media engagement • Referral program performance</p>
+                </div>
+            </div>
+
+            <div class="section section-next">
+                <h2><span class="section-icon">🚀</span>Next Steps + RallyUp Setup</h2>
+                
+                <div class="action-grid">
+                    <div class="action-card">
+                        <h4>Immediate Actions:</h4>
+                        <ul>
+                            <li>Set up RallyUp email marketing workflows</li>
+                            <li>Create lead capture forms</li>
+                            <li>Import contact lists</li>
+                            <li>Approve content and email sequences</li>
+                            <li>Assign team members personal outreach lists</li>
+                            <li>Distribute all templates and materials</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="action-card">
+                        <h4>Week-by-Week Setup:</h4>
+                        <ul>
+                            <li><strong>4 weeks before:</strong> Launch email capture + social campaign</li>
+                            <li><strong>3 weeks before:</strong> Email nurture sequence begins</li>
+                            <li><strong>2 weeks before:</strong> Personal outreach intensifies</li>
+                            <li><strong>1 week before:</strong> Final email sequence + last-chance calls</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Expected Result:</h4>
+                    <p><strong>300+ email signups</strong> converting to <strong>100+ attendees</strong> and <strong>$50,000+ raised</strong> through systematic nurturing and personal outreach.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>What Makes This Different:</h4>
+                    <p>This transforms the approach from "post and pray" to a <strong>systematic nurturing funnel</strong> that captures leads first, then converts them through relationship-building - all using free tools within RallyUp!</p>
