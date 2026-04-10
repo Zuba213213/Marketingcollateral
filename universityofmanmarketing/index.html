@@ -5,10 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>University of Man — Marketing Audit & Client Journey System | JRZ Consulting Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&family=Syne+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── JRZ CONTEXT BANNER ── */
+.jrz-banner {
+  background: #0d0d0f;
+  font-family: 'Syne', sans-serif;
+  border-bottom: 1px solid rgba(232,200,74,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.jrz-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(232,200,74,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.jrz-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px clamp(1.25rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.jrz-logo {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e8c84a;
+}
+.jrz-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8c84a;
+  border: 1px solid rgba(232,200,74,0.3);
+  padding: 3px 10px;
+  border-radius: 2px;
+  background: rgba(232,200,74,0.08);
+}
+.jrz-body {
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 3rem);
+  position: relative;
+  z-index: 1;
+}
+.jrz-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.jrz-eyebrow-line {
+  width: 1.5rem;
+  height: 1px;
+  background: #e8c84a;
+  flex-shrink: 0;
+}
+.jrz-eyebrow-text {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e8c84a;
+  opacity: 0.8;
+}
+.jrz-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-style: italic;
+  color: #f0ede8;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.jrz-sub {
+  font-size: 0.85rem;
+  color: #a8a49e;
+  margin-bottom: 1.75rem;
+  max-width: 64ch;
+  line-height: 1.7;
+}
+.jrz-sub strong { color: #f0ede8; font-weight: 600; }
+.jrz-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 700px;
+}
+.jrz-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.jrz-card-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e8c84a;
+  background: rgba(232,200,74,0.07);
+  border-right: 1px solid rgba(232,200,74,0.15);
+  padding: 10px 14px;
+  min-width: 110px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.jrz-card-val {
+  font-size: 0.85rem;
+  color: #c8c4be;
+  padding: 9px 14px;
+  line-height: 1.5;
+}
+.jrz-card-val strong { color: #f0ede8; }
+.jrz-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232,200,74,0.3), transparent);
+  margin: 1.75rem 0 0;
+}
+
+/* ── ORIGINAL STYLES ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --ink:        #111010;
     --ink2:       #3a3835;
@@ -28,521 +155,116 @@
     --purple-light:#eeedfe;
     --gap:        clamp(2rem, 5vw, 5rem);
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--page);
-    color: var(--ink2);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── HEADER ───────────────────────────────────────────────── */
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--page);
-    border-bottom: 1px solid var(--rule);
-    padding: .75rem var(--gap);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo {
-    font-family: 'DM Mono', monospace;
-    font-size: .75rem;
-    font-weight: 500;
-    letter-spacing: .12em;
-    color: var(--ink3);
-    text-transform: uppercase;
-    text-decoration: none;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--page); color: var(--ink2); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .site-header { position: sticky; top: 0; z-index: 100; background: var(--page); border-bottom: 1px solid var(--rule); padding: .75rem var(--gap); display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'DM Mono', monospace; font-size: .75rem; font-weight: 500; letter-spacing: .12em; color: var(--ink3); text-transform: uppercase; text-decoration: none; }
   .logo strong { color: var(--navy); }
-  .nav {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav a {
-    font-size: .8rem;
-    font-weight: 500;
-    color: var(--ink3);
-    text-decoration: none;
-    letter-spacing: .04em;
-    transition: color .2s;
-  }
+  .nav { display: flex; gap: 2rem; list-style: none; }
+  .nav a { font-size: .8rem; font-weight: 500; color: var(--ink3); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
   .nav a:hover { color: var(--navy); }
-
-  /* ── HERO ─────────────────────────────────────────────────── */
-  .hero {
-    padding: clamp(4rem, 10vw, 8rem) var(--gap) clamp(3rem, 6vw, 5rem);
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: end;
-  }
-  .hero-left {}
-  .eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: .7rem;
-    letter-spacing: .15em;
-    color: var(--amber);
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-  }
-  .eyebrow::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: var(--amber);
-  }
-  .hero h1 {
-    font-family: 'Libre Baskerville', serif;
-    font-size: clamp(2.25rem, 4vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
-    letter-spacing: -.02em;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--navy);
-  }
-  .hero-desc {
-    font-size: 1.05rem;
-    color: var(--ink3);
-    max-width: 44ch;
-    line-height: 1.8;
-  }
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .meta-block {
-    border-top: 1px solid var(--rule);
-    padding-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .75rem 2rem;
-  }
-  .meta-item {}
-  .meta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: .65rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--ink3);
-    margin-bottom: .2rem;
-  }
-  .meta-value {
-    font-size: .9rem;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .4rem;
-    margin-top: .5rem;
-  }
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: .65rem;
-    font-weight: 500;
-    letter-spacing: .06em;
-    padding: .3rem .7rem;
-    border-radius: 3px;
-    text-transform: uppercase;
-  }
+  .hero { padding: clamp(4rem, 10vw, 8rem) var(--gap) clamp(3rem, 6vw, 5rem); border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; }
+  .eyebrow { font-family: 'DM Mono', monospace; font-size: .7rem; letter-spacing: .15em; color: var(--amber); text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: .75rem; }
+  .eyebrow::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--amber); }
+  .hero h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 1.5rem; letter-spacing: -.02em; }
+  .hero h1 em { font-style: italic; color: var(--navy); }
+  .hero-desc { font-size: 1.05rem; color: var(--ink3); max-width: 44ch; line-height: 1.8; }
+  .hero-right { display: flex; flex-direction: column; gap: 1rem; }
+  .meta-block { border-top: 1px solid var(--rule); padding-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 2rem; }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); margin-bottom: .2rem; }
+  .meta-value { font-size: .9rem; font-weight: 500; color: var(--ink); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: .65rem; font-weight: 500; letter-spacing: .06em; padding: .3rem .7rem; border-radius: 3px; text-transform: uppercase; }
   .tag-navy   { background: var(--navy-light);   color: var(--navy);   }
   .tag-teal   { background: var(--teal-light);   color: var(--teal);   }
   .tag-amber  { background: var(--amber-light);  color: var(--amber);  }
   .tag-purple { background: var(--purple-light); color: var(--purple); }
-
-  /* ── SECTION SHELL ────────────────────────────────────────── */
-  .section {
-    padding: var(--gap) var(--gap);
-    border-bottom: 1px solid var(--rule);
-  }
+  .section { padding: var(--gap) var(--gap); border-bottom: 1px solid var(--rule); }
   .section-inner { max-width: 860px; }
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-  .section-num {
-    font-family: 'DM Mono', monospace;
-    font-size: .7rem;
-    color: var(--ink3);
-    letter-spacing: .1em;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: -.01em;
-    line-height: 1.2;
-  }
-  .section-sub {
-    font-size: .9rem;
-    color: var(--ink3);
-    margin-top: .4rem;
-    font-style: italic;
-  }
-
-  /* ── CALLOUT BOX ──────────────────────────────────────────── */
-  .callout {
-    border-left: 3px solid var(--amber);
-    background: var(--amber-light);
-    padding: 1.25rem 1.5rem;
-    border-radius: 0 6px 6px 0;
-    margin: 2rem 0;
-  }
-  .callout p {
-    font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--ink2);
-    line-height: 1.75;
-  }
-  .callout-teal {
-    border-left-color: var(--teal);
-    background: var(--teal-light);
-  }
-
-  /* ── CARD GRID ────────────────────────────────────────────── */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 1.5rem 0;
-  }
-  .card {
-    background: var(--page);
-    padding: 1.25rem 1.5rem;
-  }
-  .card-label {
-    font-family: 'DM Mono', monospace;
-    font-size: .65rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink3);
-    margin-bottom: .5rem;
-  }
-  .card-body {
-    font-size: .9rem;
-    color: var(--ink2);
-    line-height: 1.65;
-  }
-
-  /* ── SCORE TABLE ──────────────────────────────────────────── */
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--ink3); letter-spacing: .1em; flex-shrink: 0; }
+  .section-title { font-family: 'Libre Baskerville', serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700; color: var(--ink); letter-spacing: -.01em; line-height: 1.2; }
+  .section-sub { font-size: .9rem; color: var(--ink3); margin-top: .4rem; font-style: italic; }
+  .callout { border-left: 3px solid var(--amber); background: var(--amber-light); padding: 1.25rem 1.5rem; border-radius: 0 6px 6px 0; margin: 2rem 0; }
+  .callout p { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 1rem; color: var(--ink2); line-height: 1.75; }
+  .callout-teal { border-left-color: var(--teal); background: var(--teal-light); }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin: 1.5rem 0; }
+  .card { background: var(--page); padding: 1.25rem 1.5rem; }
+  .card-label { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); margin-bottom: .5rem; }
+  .card-body { font-size: .9rem; color: var(--ink2); line-height: 1.65; }
   .score-table { margin: 1.5rem 0; }
-  .score-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 1.5rem;
-    padding: .65rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
+  .score-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; padding: .65rem 0; border-bottom: 1px solid var(--rule); }
   .score-row:last-child { border-bottom: none; }
-  .score-left {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    min-width: 0;
-  }
-  .score-name {
-    font-size: .9rem;
-    color: var(--ink2);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .score-bar-wrap {
-    flex: 1;
-    height: 4px;
-    background: var(--rule);
-    border-radius: 2px;
-    min-width: 80px;
-  }
-  .score-bar {
-    height: 4px;
-    border-radius: 2px;
-  }
+  .score-left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+  .score-name { font-size: .9rem; color: var(--ink2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .score-bar-wrap { flex: 1; height: 4px; background: var(--rule); border-radius: 2px; min-width: 80px; }
+  .score-bar { height: 4px; border-radius: 2px; }
   .score-bar.high  { background: var(--teal); }
   .score-bar.mid   { background: var(--amber); }
   .score-bar.low   { background: var(--coral); }
-  .score-val {
-    font-family: 'DM Mono', monospace;
-    font-size: .8rem;
-    font-weight: 500;
-    min-width: 3rem;
-    text-align: right;
-  }
+  .score-val { font-family: 'DM Mono', monospace; font-size: .8rem; font-weight: 500; min-width: 3rem; text-align: right; }
   .score-val.high  { color: var(--teal); }
   .score-val.mid   { color: var(--amber); }
   .score-val.low   { color: var(--coral); }
-
-  /* ── GAP CARDS ────────────────────────────────────────────── */
   .gap-list { display: flex; flex-direction: column; gap: .75rem; margin: 1.5rem 0; }
-  .gap-card {
-    border-left: 3px solid var(--coral);
-    background: var(--warm);
-    padding: 1rem 1.25rem;
-    border-radius: 0 6px 6px 0;
-  }
-  .gap-card-title {
-    font-weight: 500;
-    font-size: .95rem;
-    color: var(--ink);
-    margin-bottom: .3rem;
-  }
-  .gap-card-body {
-    font-size: .875rem;
-    color: var(--ink3);
-    line-height: 1.65;
-  }
-
-  /* ── PHASE SECTIONS ───────────────────────────────────────── */
-  .phase {
-    margin: 3rem 0;
-  }
-  .phase-header {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-  }
-  .phase-num {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: white;
-  }
-  .phase-text {
-    padding: 1rem 1.5rem;
-  }
-  .phase-title {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: .2rem;
-  }
-  .phase-sub {
-    font-size: .85rem;
-    opacity: .8;
-  }
-  /* phase color variants */
-  .phase-1 .phase-num,
-  .phase-1 .phase-text { background: var(--navy); color: white; }
-  .phase-2 .phase-num,
-  .phase-2 .phase-text { background: var(--teal); color: white; }
-  .phase-3 .phase-num,
-  .phase-3 .phase-text { background: var(--purple); color: white; }
-
-  .phase-note {
-    font-size: .875rem;
-    font-style: italic;
-    color: var(--ink3);
-    margin-bottom: 1.25rem;
-    padding-left: .5rem;
-    border-left: 2px solid var(--rule);
-  }
-
-  /* ── MILESTONE TABLE ──────────────────────────────────────── */
-  .milestone-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: .875rem;
-  }
-  .milestone-table thead tr {
-    border-bottom: 2px solid var(--rule);
-  }
-  .milestone-table thead th {
-    font-family: 'DM Mono', monospace;
-    font-size: .62rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink3);
-    font-weight: 500;
-    padding: .5rem .75rem .75rem;
-    text-align: left;
-  }
-  .milestone-table tbody tr {
-    border-bottom: 1px solid var(--rule);
-  }
+  .gap-card { border-left: 3px solid var(--coral); background: var(--warm); padding: 1rem 1.25rem; border-radius: 0 6px 6px 0; }
+  .gap-card-title { font-weight: 500; font-size: .95rem; color: var(--ink); margin-bottom: .3rem; }
+  .gap-card-body { font-size: .875rem; color: var(--ink3); line-height: 1.65; }
+  .phase { margin: 3rem 0; }
+  .phase-header { display: grid; grid-template-columns: auto 1fr; gap: 0; border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
+  .phase-num { display: flex; align-items: center; justify-content: center; width: 3.5rem; font-family: 'DM Mono', monospace; font-size: 1.1rem; font-weight: 500; color: white; }
+  .phase-text { padding: 1rem 1.5rem; }
+  .phase-title { font-family: 'Libre Baskerville', serif; font-size: 1.2rem; font-weight: 700; line-height: 1.2; margin-bottom: .2rem; }
+  .phase-sub { font-size: .85rem; opacity: .8; }
+  .phase-1 .phase-num, .phase-1 .phase-text { background: var(--navy); color: white; }
+  .phase-2 .phase-num, .phase-2 .phase-text { background: var(--teal); color: white; }
+  .phase-3 .phase-num, .phase-3 .phase-text { background: var(--purple); color: white; }
+  .phase-note { font-size: .875rem; font-style: italic; color: var(--ink3); margin-bottom: 1.25rem; padding-left: .5rem; border-left: 2px solid var(--rule); }
+  .milestone-table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+  .milestone-table thead tr { border-bottom: 2px solid var(--rule); }
+  .milestone-table thead th { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); font-weight: 500; padding: .5rem .75rem .75rem; text-align: left; }
+  .milestone-table tbody tr { border-bottom: 1px solid var(--rule); }
   .milestone-table tbody tr:last-child { border-bottom: none; }
   .milestone-table tbody tr:nth-child(even) td { background: var(--warm); }
-  .milestone-table td {
-    padding: .9rem .75rem;
-    vertical-align: top;
-    line-height: 1.55;
-  }
-  .m-num {
-    font-family: 'DM Mono', monospace;
-    font-size: .75rem;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  .m-stage {
-    font-weight: 500;
-    color: var(--ink);
-    white-space: nowrap;
-  }
+  .milestone-table td { padding: .9rem .75rem; vertical-align: top; line-height: 1.55; }
+  .m-num { font-family: 'DM Mono', monospace; font-size: .75rem; font-weight: 500; white-space: nowrap; }
+  .m-stage { font-weight: 500; color: var(--ink); white-space: nowrap; }
   .m-action { color: var(--ink2); }
   .m-deliverable { color: var(--ink3); font-style: italic; }
-  .phase-outcome {
-    font-size: .85rem;
-    font-style: italic;
-    padding: .9rem 1.2rem;
-    border-radius: 6px;
-    margin-top: 1rem;
-  }
+  .phase-outcome { font-size: .85rem; font-style: italic; padding: .9rem 1.2rem; border-radius: 6px; margin-top: 1rem; }
   .phase-1 .phase-outcome { background: var(--navy-light);   color: var(--navy);   }
   .phase-2 .phase-outcome { background: var(--teal-light);   color: var(--teal);   }
   .phase-3 .phase-outcome { background: var(--purple-light); color: var(--purple); }
-
-  /* ── BUILD LIST ───────────────────────────────────────────── */
-  .build-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .5rem 2rem;
-    margin: 1.5rem 0;
-    list-style: none;
-  }
-  .build-list li {
-    font-size: .9rem;
-    color: var(--ink2);
-    display: flex;
-    align-items: baseline;
-    gap: .6rem;
-  }
-  .build-list li::before {
-    content: '→';
-    font-size: .8rem;
-    flex-shrink: 0;
-    font-weight: 500;
-  }
+  .build-list { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 2rem; margin: 1.5rem 0; list-style: none; }
+  .build-list li { font-size: .9rem; color: var(--ink2); display: flex; align-items: baseline; gap: .6rem; }
+  .build-list li::before { content: '→'; font-size: .8rem; flex-shrink: 0; font-weight: 500; }
   .build-list li.navy::before   { color: var(--navy);   }
   .build-list li.teal::before   { color: var(--teal);   }
   .build-list li.purple::before { color: var(--purple); }
-
-  /* ── JOURNEY MAP OVERVIEW ─────────────────────────────────── */
-  .journey-overview {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 2rem 0;
-  }
+  .journey-overview { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin: 2rem 0; }
   .jo-phase { padding: 1.25rem; }
   .jo-phase.navy   { background: var(--navy-light); }
   .jo-phase.teal   { background: var(--teal-light); }
   .jo-phase.purple { background: var(--purple-light); }
-  .jo-label {
-    font-family: 'DM Mono', monospace;
-    font-size: .65rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    margin-bottom: .5rem;
-  }
+  .jo-label { font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
   .jo-phase.navy   .jo-label { color: var(--navy); }
   .jo-phase.teal   .jo-label { color: var(--teal); }
   .jo-phase.purple .jo-label { color: var(--purple); }
-  .jo-title {
-    font-weight: 600;
-    font-size: .95rem;
-    color: var(--ink);
-    margin-bottom: .75rem;
-  }
+  .jo-title { font-weight: 600; font-size: .95rem; color: var(--ink); margin-bottom: .75rem; }
   .jo-steps { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
-  .jo-steps li {
-    font-size: .83rem;
-    color: var(--ink2);
-    display: flex;
-    align-items: baseline;
-    gap: .5rem;
-  }
-  .jo-steps li .ms {
-    font-family: 'DM Mono', monospace;
-    font-size: .65rem;
-    font-weight: 500;
-  }
+  .jo-steps li { font-size: .83rem; color: var(--ink2); display: flex; align-items: baseline; gap: .5rem; }
+  .jo-steps li .ms { font-family: 'DM Mono', monospace; font-size: .65rem; font-weight: 500; }
   .jo-phase.navy   .jo-steps li .ms { color: var(--navy); }
   .jo-phase.teal   .jo-steps li .ms { color: var(--teal); }
   .jo-phase.purple .jo-steps li .ms { color: var(--purple); }
-
-  /* ── FOOTER ───────────────────────────────────────────────── */
-  .site-footer {
-    padding: 3rem var(--gap);
-    border-top: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-brand {
-    font-family: 'DM Mono', monospace;
-    font-size: .7rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink3);
-  }
+  .site-footer { padding: 3rem var(--gap); border-top: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-brand { font-family: 'DM Mono', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); }
   .footer-brand strong { color: var(--navy); }
-  .footer-tag {
-    font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    font-size: .875rem;
-    color: var(--ink3);
-  }
-
-  /* ── REVEAL ANIMATION ─────────────────────────────────────── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .6s ease, transform .6s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* ── RESPONSIVE ───────────────────────────────────────────── */
+  .footer-tag { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: .875rem; color: var(--ink3); }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
   @media (max-width: 768px) {
-    .hero {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-desc { max-width: none; }
     .build-list { grid-template-columns: 1fr; }
     .journey-overview { grid-template-columns: 1fr; }
@@ -555,6 +277,37 @@
 </style>
 </head>
 <body>
+
+<!-- ── JRZ CONTEXT BANNER ── -->
+<div class="jrz-banner">
+  <div class="jrz-topbar">
+    <span class="jrz-logo">JRZ Consulting Solutions</span>
+    <span class="jrz-tag">Work Sample · Competitive Audit + Systems Design</span>
+  </div>
+  <div class="jrz-body">
+    <div class="jrz-eyebrow">
+      <div class="jrz-eyebrow-line"></div>
+      <span class="jrz-eyebrow-text">Engagement Overview</span>
+    </div>
+    <div class="jrz-headline">University of Man — Marketing Audit & Client Journey System</div>
+    <p class="jrz-sub">A prospective partnership engagement with a men's coaching business generating strong event revenue but operating with <strong>near-zero marketing infrastructure</strong>. I conducted an unsolicited competitive audit of all public-facing assets, scored the business across 8 marketing health dimensions, identified 6 structural revenue gaps, and designed a 9-milestone client journey system to address them — delivered as a partnership proposal.</p>
+    <div class="jrz-cards">
+      <div class="jrz-card">
+        <span class="jrz-card-label">Problem</span>
+        <span class="jrz-card-val">Strong brand voice and speaker network with no acquisition system, no email nurture, no retention mechanism, and revenue dependent entirely on 1–2 live events per year.</span>
+      </div>
+      <div class="jrz-card">
+        <span class="jrz-card-label">Solution</span>
+        <span class="jrz-card-val">Full competitive audit, marketing health scoring, gap analysis across 6 dimensions, and a 3-phase client journey system (9 milestones) mapping every touchpoint from cold discovery to recurring community membership.</span>
+      </div>
+      <div class="jrz-card">
+        <span class="jrz-card-label">Deliverable</span>
+        <span class="jrz-card-val"><strong>Strategic diagnostic + implementation roadmap</strong> — 10 identified deliverables across Build, Optimize, and Activate phases, scoped for execution by JRZ as a named consulting partner.</span>
+      </div>
+    </div>
+    <div class="jrz-divider"></div>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -578,22 +331,10 @@
   </div>
   <div class="hero-right reveal" style="transition-delay:.15s">
     <div class="meta-block">
-      <div class="meta-item">
-        <div class="meta-label">Client</div>
-        <div class="meta-value">Jordan Bowditch / UMAN Global</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Prepared by</div>
-        <div class="meta-value">JRZ Consulting Solutions</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Product</div>
-        <div class="meta-value">The Mandate Summit ATX</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Framework</div>
-        <div class="meta-value">Build · Optimize · Activate</div>
-      </div>
+      <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">Jordan Bowditch / UMAN Global</div></div>
+      <div class="meta-item"><div class="meta-label">Prepared by</div><div class="meta-value">JRZ Consulting Solutions</div></div>
+      <div class="meta-item"><div class="meta-label">Product</div><div class="meta-value">The Mandate Summit ATX</div></div>
+      <div class="meta-item"><div class="meta-label">Framework</div><div class="meta-value">Build · Optimize · Activate</div></div>
     </div>
     <div class="tag-row">
       <span class="tag tag-navy">Marketing Audit</span>
@@ -604,397 +345,121 @@
   </div>
 </section>
 
-<!-- ── SECTION 1: BUSINESS MODEL ───────────────────────────── -->
 <section class="section" id="audit">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <span class="section-num">01</span>
-      <div>
-        <div class="section-title">Business Model Snapshot</div>
-        <div class="section-sub">What Jordan is selling and how the revenue works</div>
-      </div>
-    </div>
-
+    <div class="section-header reveal"><span class="section-num">01</span><div><div class="section-title">Business Model Snapshot</div><div class="section-sub">What Jordan is selling and how the revenue works</div></div></div>
     <div class="card-grid reveal">
-      <div class="card">
-        <div class="card-label">Entity</div>
-        <div class="card-body">UMAN Global, LLC. Austin, TX. Founded by Jordan Bowditch. 15+ years in men's work. Co-runs Sex &amp; Love Co. with wife Alexa.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Core Product</div>
-        <div class="card-body">The Mandate Summit ATX — 4-day residential men's retreat in Dripping Springs TX. $2,997 public price / $1,500 early commitment. 30-spot cap.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Revenue Model</div>
-        <div class="card-body">Event tickets + private 1:1 coaching. No visible recurring digital product, course, or membership. Revenue is event-dependent and lumpy.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Pricing Reality</div>
-        <div class="card-body">Public page shows $2,997. FanBasis checkout reveals a $1,500 early-commitment tier plus a $1,000 lodging add-on — two separate platforms, no consolidation.</div>
-      </div>
+      <div class="card"><div class="card-label">Entity</div><div class="card-body">UMAN Global, LLC. Austin, TX. Founded by Jordan Bowditch. 15+ years in men's work. Co-runs Sex &amp; Love Co. with wife Alexa.</div></div>
+      <div class="card"><div class="card-label">Core Product</div><div class="card-body">The Mandate Summit ATX — 4-day residential men's retreat in Dripping Springs TX. $2,997 public price / $1,500 early commitment. 30-spot cap.</div></div>
+      <div class="card"><div class="card-label">Revenue Model</div><div class="card-body">Event tickets + private 1:1 coaching. No visible recurring digital product, course, or membership. Revenue is event-dependent and lumpy.</div></div>
+      <div class="card"><div class="card-label">Pricing Reality</div><div class="card-body">Public page shows $2,997. FanBasis checkout reveals a $1,500 early-commitment tier plus a $1,000 lodging add-on — two separate platforms, no consolidation.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── SECTION 2: IDEAL CLIENT ──────────────────────────────── -->
 <section class="section">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <span class="section-num">02</span>
-      <div>
-        <div class="section-title">Ideal Client Profile</div>
-        <div class="section-sub">Reconstructed from copy, testimonials, speaker lineup, and brand voice</div>
-      </div>
-    </div>
-
+    <div class="section-header reveal"><span class="section-num">02</span><div><div class="section-title">Ideal Client Profile</div><div class="section-sub">Reconstructed from copy, testimonials, speaker lineup, and brand voice</div></div></div>
     <div class="card-grid reveal">
-      <div class="card">
-        <div class="card-label">Demographics</div>
-        <div class="card-body">Men, mid-20s to mid-40s. Likely single, recently divorced, or relationally unfulfilled. Based in or willing to travel to Austin-adjacent US markets. Has disposable income — the price point self-selects.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Psychographics</div>
-        <div class="card-body">"Nice guys" who've been successful-ish but feel something is missing. Latent emotional intelligence, underdeveloped. Open to somatic/breathwork but allergic to overtly woo framing. Gym-going, podcast-listening, self-improvement-adjacent.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Core Pain</div>
-        <div class="card-body">Isolated. Over-relies on romantic partner for emotional needs. Lacks male friendship depth. Successful on paper, hollow in practice.</div>
-      </div>
+      <div class="card"><div class="card-label">Demographics</div><div class="card-body">Men, mid-20s to mid-40s. Likely single, recently divorced, or relationally unfulfilled. Based in or willing to travel to Austin-adjacent US markets. Has disposable income — the price point self-selects.</div></div>
+      <div class="card"><div class="card-label">Psychographics</div><div class="card-body">"Nice guys" who've been successful-ish but feel something is missing. Latent emotional intelligence, underdeveloped. Open to somatic/breathwork but allergic to overtly woo framing. Gym-going, podcast-listening, self-improvement-adjacent.</div></div>
+      <div class="card"><div class="card-label">Core Pain</div><div class="card-body">Isolated. Over-relies on romantic partner for emotional needs. Lacks male friendship depth. Successful on paper, hollow in practice.</div></div>
     </div>
+    <div class="callout reveal"><p>"Playfully Sincere Brotherhood" is genuine differentiation — it separates Jordan from the hyper-masculine Andrew Tate lane AND the overly earnest men's therapy lane. He occupies a real third space that few in the market have successfully claimed.</p></div>
+  </div>
+</section>
 
-    <div class="callout reveal">
-      <p>"Playfully Sincere Brotherhood" is genuine differentiation — it separates Jordan from the hyper-masculine Andrew Tate lane AND the overly earnest men's therapy lane. He occupies a real third space that few in the market have successfully claimed.</p>
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal"><span class="section-num">03</span><div><div class="section-title">Brand Presence & Content Output</div></div></div>
+    <div class="card-grid reveal">
+      <div class="card"><div class="card-label">Website</div><div class="card-body">Two-page architecture: homepage (email capture only) + Mandate sales page. No blog, no SEO content, no evergreen library. Built on ClickFunnels 2.0.</div></div>
+      <div class="card"><div class="card-label">Social</div><div class="card-body">Instagram (@jordanbowditch, active Reels), TikTok, Facebook (~6K). No YouTube presence with meaningful audience found. Character: the BROfessional Edu-tainer.</div></div>
+      <div class="card"><div class="card-label">Brand Voice</div><div class="card-body">Highly distinctive. Irreverent, self-aware, playful. "Austin Fuggin' Texas, Baby." Avoids both toxic-masc and therapy-speak. Genuinely differentiated voice.</div></div>
+      <div class="card"><div class="card-label">Authority</div><div class="card-body">A-tier speaker network: Elliott Hulse, Hal Elrod, Eben Pagan, JP Sears. 15+ years Austin men's work scene. National Educator at Bulletproof Nutrition for 6 years.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── SECTION 3: BRAND PRESENCE ────────────────────────────── -->
 <section class="section">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <span class="section-num">03</span>
-      <div>
-        <div class="section-title">Brand Presence & Content Output</div>
-      </div>
-    </div>
-
-    <div class="card-grid reveal">
-      <div class="card">
-        <div class="card-label">Website</div>
-        <div class="card-body">Two-page architecture: homepage (email capture only) + Mandate sales page. No blog, no SEO content, no evergreen library. Built on ClickFunnels 2.0.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Social</div>
-        <div class="card-body">Instagram (@jordanbowditch, active Reels), TikTok, Facebook (~6K). No YouTube presence with meaningful audience found. Character: the BROfessional Edu-tainer.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Brand Voice</div>
-        <div class="card-body">Highly distinctive. Irreverent, self-aware, playful. "Austin Fuggin' Texas, Baby." Avoids both toxic-masc and therapy-speak. Genuinely differentiated voice.</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Authority</div>
-        <div class="card-body">A-tier speaker network: Elliott Hulse, Hal Elrod, Eben Pagan, JP Sears. 15+ years Austin men's work scene. National Educator at Bulletproof Nutrition for 6 years.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 4: SCORES ─────────────────────────────────────── -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-header reveal">
-      <span class="section-num">04</span>
-      <div>
-        <div class="section-title">Marketing Health Scores</div>
-        <div class="section-sub">Estimated from publicly visible assets — 10 = best in class</div>
-      </div>
-    </div>
-
+    <div class="section-header reveal"><span class="section-num">04</span><div><div class="section-title">Marketing Health Scores</div><div class="section-sub">Estimated from publicly visible assets — 10 = best in class</div></div></div>
     <div class="score-table reveal">
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Brand voice clarity</span>
-          <div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div>
-        </div>
-        <span class="score-val high">8.2</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Speaker / social proof quality</span>
-          <div class="score-bar-wrap"><div class="score-bar high" style="width:78%"></div></div>
-        </div>
-        <span class="score-val high">7.8</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Sales page conversion design</span>
-          <div class="score-bar-wrap"><div class="score-bar mid" style="width:62%"></div></div>
-        </div>
-        <span class="score-val mid">6.2</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Homepage depth / nurture value</span>
-          <div class="score-bar-wrap"><div class="score-bar low" style="width:15%"></div></div>
-        </div>
-        <span class="score-val low">1.5</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Content funnel (organic)</span>
-          <div class="score-bar-wrap"><div class="score-bar low" style="width:30%"></div></div>
-        </div>
-        <span class="score-val low">3.0</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Email list / nurture system</span>
-          <div class="score-bar-wrap"><div class="score-bar low" style="width:20%"></div></div>
-        </div>
-        <span class="score-val low">2.0</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Off-season revenue visibility</span>
-          <div class="score-bar-wrap"><div class="score-bar low" style="width:10%"></div></div>
-        </div>
-        <span class="score-val low">1.0</span>
-      </div>
-      <div class="score-row">
-        <div class="score-left">
-          <span class="score-name">Client acquisition automation</span>
-          <div class="score-bar-wrap"><div class="score-bar low" style="width:12%"></div></div>
-        </div>
-        <span class="score-val low">1.2</span>
-      </div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Brand voice clarity</span><div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div></div><span class="score-val high">8.2</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Speaker / social proof quality</span><div class="score-bar-wrap"><div class="score-bar high" style="width:78%"></div></div></div><span class="score-val high">7.8</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Sales page conversion design</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:62%"></div></div></div><span class="score-val mid">6.2</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Homepage depth / nurture value</span><div class="score-bar-wrap"><div class="score-bar low" style="width:15%"></div></div></div><span class="score-val low">1.5</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Content funnel (organic)</span><div class="score-bar-wrap"><div class="score-bar low" style="width:30%"></div></div></div><span class="score-val low">3.0</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Email list / nurture system</span><div class="score-bar-wrap"><div class="score-bar low" style="width:20%"></div></div></div><span class="score-val low">2.0</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Off-season revenue visibility</span><div class="score-bar-wrap"><div class="score-bar low" style="width:10%"></div></div></div><span class="score-val low">1.0</span></div>
+      <div class="score-row"><div class="score-left"><span class="score-name">Client acquisition automation</span><div class="score-bar-wrap"><div class="score-bar low" style="width:12%"></div></div></div><span class="score-val low">1.2</span></div>
     </div>
-
-    <div class="callout reveal" style="margin-top:2rem">
-      <p>The pattern is consistent: Jordan's brand assets are strong, his operational and marketing infrastructure is near-zero. This is not a brand problem. It is an execution and systems problem — the best kind of gap to walk into.</p>
-    </div>
+    <div class="callout reveal" style="margin-top:2rem"><p>The pattern is consistent: Jordan's brand assets are strong, his operational and marketing infrastructure is near-zero. This is not a brand problem. It is an execution and systems problem — the best kind of gap to walk into.</p></div>
   </div>
 </section>
 
-<!-- ── SECTION 5: GAPS ──────────────────────────────────────── -->
 <section class="section" id="gaps">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <span class="section-num">05</span>
-      <div>
-        <div class="section-title">Visible Gaps</div>
-        <div class="section-sub">Where the business is losing money and momentum right now</div>
-      </div>
-    </div>
-
+    <div class="section-header reveal"><span class="section-num">05</span><div><div class="section-title">Visible Gaps</div><div class="section-sub">Where the business is losing money and momentum right now</div></div></div>
     <div class="gap-list reveal">
-      <div class="gap-card">
-        <div class="gap-card-title">No content funnel</div>
-        <div class="gap-card-body">Social content exists but there's no systematic path from cold follower to warm lead to event buyer. The homepage captures email with zero value exchange — no lead magnet, no welcome sequence. Jordan's personality is his best asset and it's trapped on Instagram.</div>
-      </div>
-      <div class="gap-card">
-        <div class="gap-card-title">Revenue is a single cliff</div>
-        <div class="gap-card-body">One or two events per year at 30 seats. At the real blended price (~$1,500–$2,997/seat), gross revenue per event is likely $60–90K before venue, food, speakers, and logistics. One bad sales cycle and the business stalls completely.</div>
-      </div>
-      <div class="gap-card">
-        <div class="gap-card-title">No acquisition mechanism</div>
-        <div class="gap-card-body">No visible paid traffic, no SEO content, no referral system, no affiliate network — despite having a speaker lineup full of operators who could be sending warm leads systematically.</div>
-      </div>
-      <div class="gap-card">
-        <div class="gap-card-title">Platform fragmentation</div>
-        <div class="gap-card-body">ClickFunnels for the main site. FanBasis for early-commitment checkout. Telegram for community. No CRM connecting them. Jordan is likely managing outreach manually across all three. This is a tax on his time and a leak in the conversion funnel.</div>
-      </div>
-      <div class="gap-card">
-        <div class="gap-card-title">No AI or automation infrastructure</div>
-        <div class="gap-card-body">Zero evidence of lead qualification automation, call booking flows, or post-event follow-up sequences. Every handoff is manual — a massive time drain that caps scale at Jordan's personal bandwidth.</div>
-      </div>
-      <div class="gap-card">
-        <div class="gap-card-title">No off-season revenue</div>
-        <div class="gap-card-body">No digital product, no membership, no group program. Revenue stops when events stop. The community he's building has nowhere to live between gatherings.</div>
-      </div>
+      <div class="gap-card"><div class="gap-card-title">No content funnel</div><div class="gap-card-body">Social content exists but there's no systematic path from cold follower to warm lead to event buyer. The homepage captures email with zero value exchange — no lead magnet, no welcome sequence. Jordan's personality is his best asset and it's trapped on Instagram.</div></div>
+      <div class="gap-card"><div class="gap-card-title">Revenue is a single cliff</div><div class="gap-card-body">One or two events per year at 30 seats. At the real blended price (~$1,500–$2,997/seat), gross revenue per event is likely $60–90K before venue, food, speakers, and logistics. One bad sales cycle and the business stalls completely.</div></div>
+      <div class="gap-card"><div class="gap-card-title">No acquisition mechanism</div><div class="gap-card-body">No visible paid traffic, no SEO content, no referral system, no affiliate network — despite having a speaker lineup full of operators who could be sending warm leads systematically.</div></div>
+      <div class="gap-card"><div class="gap-card-title">Platform fragmentation</div><div class="gap-card-body">ClickFunnels for the main site. FanBasis for early-commitment checkout. Telegram for community. No CRM connecting them. Jordan is likely managing outreach manually across all three. This is a tax on his time and a leak in the conversion funnel.</div></div>
+      <div class="gap-card"><div class="gap-card-title">No AI or automation infrastructure</div><div class="gap-card-body">Zero evidence of lead qualification automation, call booking flows, or post-event follow-up sequences. Every handoff is manual — a massive time drain that caps scale at Jordan's personal bandwidth.</div></div>
+      <div class="gap-card"><div class="gap-card-title">No off-season revenue</div><div class="gap-card-body">No digital product, no membership, no group program. Revenue stops when events stop. The community he's building has nowhere to live between gatherings.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── SECTION 6: THE SOLUTION ──────────────────────────────── -->
 <section class="section" id="journey">
   <div class="section-inner" style="max-width:920px">
-    <div class="section-header reveal">
-      <span class="section-num">06</span>
-      <div>
-        <div class="section-title">The Client Journey System</div>
-        <div class="section-sub">From stranger to brother — nine milestones, three phases, one coherent system</div>
-      </div>
-    </div>
-
-    <div class="callout callout-teal reveal">
-      <p>The goal is simple: take a man who has never heard of University of Man and walk him — step by step — through a journey that ends with him as a loyal, referring community member. Every milestone maps what he experiences and exactly what we build to make that moment happen.</p>
-    </div>
-
-    <!-- Journey overview -->
+    <div class="section-header reveal"><span class="section-num">06</span><div><div class="section-title">The Client Journey System</div><div class="section-sub">From stranger to brother — nine milestones, three phases, one coherent system</div></div></div>
+    <div class="callout callout-teal reveal"><p>The goal is simple: take a man who has never heard of University of Man and walk him — step by step — through a journey that ends with him as a loyal, referring community member. Every milestone maps what he experiences and exactly what we build to make that moment happen.</p></div>
     <div class="journey-overview reveal">
-      <div class="jo-phase navy">
-        <div class="jo-label">Phase 1</div>
-        <div class="jo-title">Build the Foundation</div>
-        <ul class="jo-steps">
-          <li><span class="ms">M1</span> Discovers Jordan</li>
-          <li><span class="ms">M2</span> First impression lands</li>
-          <li><span class="ms">M3</span> Raises his hand</li>
-        </ul>
-      </div>
-      <div class="jo-phase teal">
-        <div class="jo-label">Phase 2</div>
-        <div class="jo-title">Optimize the Experience</div>
-        <ul class="jo-steps">
-          <li><span class="ms">M4</span> Wants to know more</li>
-          <li><span class="ms">M5</span> The conversation happens</li>
-          <li><span class="ms">M6</span> He buys his ticket</li>
-        </ul>
-      </div>
-      <div class="jo-phase purple">
-        <div class="jo-label">Phase 3</div>
-        <div class="jo-title">Activate the Framework</div>
-        <ul class="jo-steps">
-          <li><span class="ms">M7</span> The event changes him</li>
-          <li><span class="ms">M8</span> He stays connected</li>
-          <li><span class="ms">M9</span> He becomes a member</li>
-        </ul>
-      </div>
+      <div class="jo-phase navy"><div class="jo-label">Phase 1</div><div class="jo-title">Build the Foundation</div><ul class="jo-steps"><li><span class="ms">M1</span> Discovers Jordan</li><li><span class="ms">M2</span> First impression lands</li><li><span class="ms">M3</span> Raises his hand</li></ul></div>
+      <div class="jo-phase teal"><div class="jo-label">Phase 2</div><div class="jo-title">Optimize the Experience</div><ul class="jo-steps"><li><span class="ms">M4</span> Wants to know more</li><li><span class="ms">M5</span> The conversation happens</li><li><span class="ms">M6</span> He buys his ticket</li></ul></div>
+      <div class="jo-phase purple"><div class="jo-label">Phase 3</div><div class="jo-title">Activate the Framework</div><ul class="jo-steps"><li><span class="ms">M7</span> The event changes him</li><li><span class="ms">M8</span> He stays connected</li><li><span class="ms">M9</span> He becomes a member</li></ul></div>
     </div>
 
-    <!-- PHASE 1 -->
     <div class="phase phase-1 reveal">
-      <div class="phase-header">
-        <div class="phase-num">01</div>
-        <div class="phase-text">
-          <div class="phase-title">Build the Foundation</div>
-          <div class="phase-sub">Create the infrastructure that turns strangers into leads</div>
-        </div>
-      </div>
+      <div class="phase-header"><div class="phase-num">01</div><div class="phase-text"><div class="phase-title">Build the Foundation</div><div class="phase-sub">Create the infrastructure that turns strangers into leads</div></div></div>
       <p class="phase-note">The customer doesn't know Jordan yet. He may find him through a Reel, a friend's mention, or a search. What he finds next either captures him or loses him.</p>
-      <table class="milestone-table">
-        <thead>
-          <tr>
-            <th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="m-num" style="color:var(--navy)">M1</td>
-            <td class="m-stage">Discovers Jordan</td>
-            <td class="m-action">A man sees Jordan's content — a Reel, a share, a mention — and something resonates. He visits the website for the first time.</td>
-            <td class="m-deliverable">Homepage rebuild: story, origin, social proof, and a genuine lead magnet ("The Brotherhood Assessment" opt-in).</td>
-          </tr>
-          <tr>
-            <td class="m-num" style="color:var(--navy)">M2</td>
-            <td class="m-stage">First Impression Lands</td>
-            <td class="m-action">He reads who Jordan is, recognizes his own pain in the language, and understands immediately what University of Man is about.</td>
-            <td class="m-deliverable">Clear one-page message hierarchy: Problem → Solution → Who it's for → What to do next. No confusion.</td>
-          </tr>
-          <tr>
-            <td class="m-num" style="color:var(--navy)">M3</td>
-            <td class="m-stage">Raises His Hand</td>
-            <td class="m-action">He enters his email — not because he was pressured, but because he was offered something worth having.</td>
-            <td class="m-deliverable">Lead magnet delivery + 5-email welcome sequence. Warm, voice-consistent, no hard sell in the first two emails.</td>
-          </tr>
-        </tbody>
-      </table>
+      <table class="milestone-table"><thead><tr><th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th></tr></thead><tbody>
+        <tr><td class="m-num" style="color:var(--navy)">M1</td><td class="m-stage">Discovers Jordan</td><td class="m-action">A man sees Jordan's content — a Reel, a share, a mention — and something resonates. He visits the website for the first time.</td><td class="m-deliverable">Homepage rebuild: story, origin, social proof, and a genuine lead magnet ("The Brotherhood Assessment" opt-in).</td></tr>
+        <tr><td class="m-num" style="color:var(--navy)">M2</td><td class="m-stage">First Impression Lands</td><td class="m-action">He reads who Jordan is, recognizes his own pain in the language, and understands immediately what University of Man is about.</td><td class="m-deliverable">Clear one-page message hierarchy: Problem → Solution → Who it's for → What to do next. No confusion.</td></tr>
+        <tr><td class="m-num" style="color:var(--navy)">M3</td><td class="m-stage">Raises His Hand</td><td class="m-action">He enters his email — not because he was pressured, but because he was offered something worth having.</td><td class="m-deliverable">Lead magnet delivery + 5-email welcome sequence. Warm, voice-consistent, no hard sell in the first two emails.</td></tr>
+      </tbody></table>
       <div class="phase-outcome">Phase 1 outcome: A stranger becomes a named lead with a warm relationship to the brand — before Jordan has spent a minute of his time on them.</div>
     </div>
 
-    <!-- PHASE 2 -->
     <div class="phase phase-2 reveal">
-      <div class="phase-header">
-        <div class="phase-num">02</div>
-        <div class="phase-text">
-          <div class="phase-title">Optimize the Experience</div>
-          <div class="phase-sub">Make every touchpoint feel guided, trustworthy, and earned</div>
-        </div>
-      </div>
+      <div class="phase-header"><div class="phase-num">02</div><div class="phase-text"><div class="phase-title">Optimize the Experience</div><div class="phase-sub">Make every touchpoint feel guided, trustworthy, and earned</div></div></div>
       <p class="phase-note">The lead is warm but not yet committed. He knows the voice. Now he needs to be moved from interest to action — with zero friction and full confidence.</p>
-      <table class="milestone-table">
-        <thead>
-          <tr>
-            <th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="m-num" style="color:var(--teal)">M4</td>
-            <td class="m-stage">Wants to Know More</td>
-            <td class="m-action">He's been through the email sequence and starts engaging. He opens emails, clicks links, maybe replies. Curious but still evaluating.</td>
-            <td class="m-deliverable">AI intake agent (SMS/call) activates: answers FAQs, surfaces objections, books a discovery conversation automatically.</td>
-          </tr>
-          <tr>
-            <td class="m-num" style="color:var(--teal)">M5</td>
-            <td class="m-stage">The Conversation Happens</td>
-            <td class="m-action">He gets on a call — or receives a structured message sequence — that meets him where he is. He feels heard, not sold to.</td>
-            <td class="m-deliverable">Discovery call framework + qualification rubric. A consistent, low-pressure conversation Jordan (or a future team member) can run.</td>
-          </tr>
-          <tr>
-            <td class="m-num" style="color:var(--teal)">M6</td>
-            <td class="m-stage">He Buys His Ticket</td>
-            <td class="m-action">He registers. The checkout is simple, the confirmation is warm, and he immediately feels like he made the right call.</td>
-            <td class="m-deliverable">Post-purchase sequence: confirmation, countdown, prep content, Telegram onboarding. Buyer's remorse prevention built in.</td>
-          </tr>
-        </tbody>
-      </table>
+      <table class="milestone-table"><thead><tr><th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th></tr></thead><tbody>
+        <tr><td class="m-num" style="color:var(--teal)">M4</td><td class="m-stage">Wants to Know More</td><td class="m-action">He's been through the email sequence and starts engaging. He opens emails, clicks links, maybe replies. Curious but still evaluating.</td><td class="m-deliverable">AI intake agent (SMS/call) activates: answers FAQs, surfaces objections, books a discovery conversation automatically.</td></tr>
+        <tr><td class="m-num" style="color:var(--teal)">M5</td><td class="m-stage">The Conversation Happens</td><td class="m-action">He gets on a call — or receives a structured message sequence — that meets him where he is. He feels heard, not sold to.</td><td class="m-deliverable">Discovery call framework + qualification rubric. A consistent, low-pressure conversation Jordan (or a future team member) can run.</td></tr>
+        <tr><td class="m-num" style="color:var(--teal)">M6</td><td class="m-stage">He Buys His Ticket</td><td class="m-action">He registers. The checkout is simple, the confirmation is warm, and he immediately feels like he made the right call.</td><td class="m-deliverable">Post-purchase sequence: confirmation, countdown, prep content, Telegram onboarding. Buyer's remorse prevention built in.</td></tr>
+      </tbody></table>
       <div class="phase-outcome">Phase 2 outcome: A warm lead becomes a paying attendee who is already primed for transformation before he walks through the door.</div>
     </div>
 
-    <!-- PHASE 3 -->
     <div class="phase phase-3 reveal">
-      <div class="phase-header">
-        <div class="phase-num">03</div>
-        <div class="phase-text">
-          <div class="phase-title">Activate the Framework</div>
-          <div class="phase-sub">Build the systems that compound — retention, referral, recurring revenue</div>
-        </div>
-      </div>
+      <div class="phase-header"><div class="phase-num">03</div><div class="phase-text"><div class="phase-title">Activate the Framework</div><div class="phase-sub">Build the systems that compound — retention, referral, recurring revenue</div></div></div>
       <p class="phase-note">The event is over — and that's where most coaching businesses lose the plot. Phase 3 is what turns a one-time attendee into a lifelong community member and a recurring revenue contributor.</p>
-      <table class="milestone-table">
-        <thead>
-          <tr>
-            <th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="m-num" style="color:var(--purple)">M7</td>
-            <td class="m-stage">The Event Changes Him</td>
-            <td class="m-action">He attends The Mandate Summit. The experience delivers on the promise. He's connected to brothers, cracked open, and hungry for more.</td>
-            <td class="m-deliverable">Post-event integration sequence (3 emails over 2 weeks). Reflection prompts, community reinforcement, next-step offer.</td>
-          </tr>
-          <tr>
-            <td class="m-num" style="color:var(--purple)">M8</td>
-            <td class="m-stage">He Stays Connected</td>
-            <td class="m-action">He stays active in Telegram, opens Jordan's emails, follows the content — and begins telling other men about it.</td>
-            <td class="m-deliverable">Referral system: structured ask, shareable assets, incentive structure. Speaker affiliate pipeline operational.</td>
-          </tr>
-          <tr>
-            <td class="m-num" style="color:var(--purple)">M9</td>
-            <td class="m-stage">He Becomes a Member</td>
-            <td class="m-action">He joins the ongoing digital community or group program. He's now a recurring contributor — not just an event attendee.</td>
-            <td class="m-deliverable">Digital product launch: monthly group calls, course, or brotherhood membership. Off-season revenue stream established.</td>
-          </tr>
-        </tbody>
-      </table>
+      <table class="milestone-table"><thead><tr><th>#</th><th>Customer Stage</th><th>What Happens</th><th>Deliverable</th></tr></thead><tbody>
+        <tr><td class="m-num" style="color:var(--purple)">M7</td><td class="m-stage">The Event Changes Him</td><td class="m-action">He attends The Mandate Summit. The experience delivers on the promise. He's connected to brothers, cracked open, and hungry for more.</td><td class="m-deliverable">Post-event integration sequence (3 emails over 2 weeks). Reflection prompts, community reinforcement, next-step offer.</td></tr>
+        <tr><td class="m-num" style="color:var(--purple)">M8</td><td class="m-stage">He Stays Connected</td><td class="m-action">He stays active in Telegram, opens Jordan's emails, follows the content — and begins telling other men about it.</td><td class="m-deliverable">Referral system: structured ask, shareable assets, incentive structure. Speaker affiliate pipeline operational.</td></tr>
+        <tr><td class="m-num" style="color:var(--purple)">M9</td><td class="m-stage">He Becomes a Member</td><td class="m-action">He joins the ongoing digital community or group program. He's now a recurring contributor — not just an event attendee.</td><td class="m-deliverable">Digital product launch: monthly group calls, course, or brotherhood membership. Off-season revenue stream established.</td></tr>
+      </tbody></table>
       <div class="phase-outcome">Phase 3 outcome: A one-time event buyer becomes a community member, a referral source, and a recurring revenue contributor — with no additional acquisition cost.</div>
     </div>
-
   </div>
 </section>
 
-<!-- ── SECTION 7: DELIVERABLES ───────────────────────────────── -->
 <section class="section" id="builds">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <span class="section-num">07</span>
-      <div>
-        <div class="section-title">The Full Build List</div>
-        <div class="section-sub">Ten deliverables across three phases</div>
-      </div>
-    </div>
-
+    <div class="section-header reveal"><span class="section-num">07</span><div><div class="section-title">The Full Build List</div><div class="section-sub">Ten deliverables across three phases</div></div></div>
     <ul class="build-list reveal">
       <li class="navy">Homepage rebuild + clear messaging hierarchy</li>
       <li class="teal">AI intake agent (SMS / call qualification flow)</li>
@@ -1007,43 +472,25 @@
       <li class="purple">Digital product design + pre-sell campaign</li>
       <li class="purple">90-day content calendar with funnel logic</li>
     </ul>
-
-    <div class="callout callout-teal reveal" style="margin-top:2.5rem">
-      <p><strong style="font-style:normal">Clarity. Simplicity. Openness.</strong> We don't build complicated systems. We build the right system once, set it up properly, and let it run — so Jordan can stay in his zone of genius and the customer's journey takes care of itself.</p>
-    </div>
+    <div class="callout callout-teal reveal" style="margin-top:2.5rem"><p><strong style="font-style:normal">Clarity. Simplicity. Openness.</strong> We don't build complicated systems. We build the right system once, set it up properly, and let it run — so Jordan can stay in his zone of genius and the customer's journey takes care of itself.</p></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-brand"><strong>JRZ</strong> Consulting Solutions &nbsp;·&nbsp; Austin, Texas &nbsp;·&nbsp; jrzconsultingsolutions.com</div>
   <div class="footer-tag">Marketing should feel simple, intentional, and built for growth.</div>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
-
-  // Animate score bars on reveal
   document.querySelectorAll('.score-bar').forEach(bar => {
-    const w = bar.style.width;
-    bar.style.width = '0';
+    const w = bar.style.width; bar.style.width = '0';
     const barObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          setTimeout(() => { bar.style.transition = 'width .8s ease'; bar.style.width = w; }, 200);
-          barObserver.unobserve(e.target);
-        }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => { bar.style.transition = 'width .8s ease'; bar.style.width = w; }, 200); barObserver.unobserve(e.target); } });
     }, { threshold: 0.5 });
     barObserver.observe(bar);
   });
