@@ -4,6 +4,559 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greenbelt Event Rentals · Email Marketing Execution Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Syne:wght@400;500;600;700&family=Syne+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+/* ── JRZ CONTEXT BANNER ── */
+.jrz-banner {
+  background: #0d0d0f;
+  font-family: 'Syne', sans-serif;
+  border-bottom: 1px solid rgba(232,200,74,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.jrz-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(232,200,74,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.jrz-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px clamp(1.25rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.jrz-logo {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e8c84a;
+}
+.jrz-tag {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8c84a;
+  border: 1px solid rgba(232,200,74,0.3);
+  padding: 3px 10px;
+  border-radius: 2px;
+  background: rgba(232,200,74,0.08);
+}
+.jrz-body {
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 3rem);
+  position: relative;
+  z-index: 1;
+}
+.jrz-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.jrz-eyebrow-line {
+  width: 1.5rem;
+  height: 1px;
+  background: #e8c84a;
+  flex-shrink: 0;
+}
+.jrz-eyebrow-text {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e8c84a;
+  opacity: 0.8;
+}
+.jrz-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-style: italic;
+  color: #f0ede8;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.jrz-sub {
+  font-size: 0.85rem;
+  color: #a8a49e;
+  margin-bottom: 1.75rem;
+  max-width: 64ch;
+  line-height: 1.7;
+}
+.jrz-sub strong { color: #f0ede8; font-weight: 600; }
+.jrz-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 700px;
+}
+.jrz-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.jrz-card-label {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e8c84a;
+  background: rgba(232,200,74,0.07);
+  border-right: 1px solid rgba(232,200,74,0.15);
+  padding: 10px 14px;
+  min-width: 110px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.jrz-card-val {
+  font-size: 0.85rem;
+  color: #c8c4be;
+  padding: 9px 14px;
+  line-height: 1.5;
+}
+.jrz-card-val strong { color: #f0ede8; }
+.jrz-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232,200,74,0.3), transparent);
+  margin: 1.75rem 0 0;
+}
+
+/* ── ORIGINAL STYLES ── */
+:root {
+  --ink:#0f0e0c;
+  --parchment:#f5f0e8;
+  --parchment-mid:#ede5d4;
+  --parchment-dark:#d9ceb8;
+  --gold:#b8922a;
+  --gold-light:#d4a93a;
+  --gold-pale:#e8d48a;
+  --crimson:#8b1a1a;
+  --forest:#2d5a3d;
+  --slate:#2a4060;
+  --text:#1a1714;
+  --text-2:#4a4030;
+  --text-3:#7a6e5c;
+  --border:rgba(184,146,42,0.28);
+  --border-s:rgba(184,146,42,0.55);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { overflow-x:hidden; }
+
+.cover {
+  background:var(--ink);
+  width:100%;
+  padding:72px 24px 60px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cover::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(184,146,42,0.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+.eyebrow { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.45em; text-transform:uppercase; color:var(--gold); opacity:0.7; margin-bottom:24px; display:block; }
+.rule { width:120px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:16px auto; }
+.rule.s { width:50px; }
+.cover h1 { font-family:'Cinzel',serif; font-size:clamp(26px,7vw,48px); font-weight:700; color:var(--parchment); letter-spacing:0.05em; line-height:1.2; }
+.cover h1 em { font-style:normal; color:var(--gold-light); }
+.cover-sub { font-style:italic; font-size:18px; color:#c8bda8; font-weight:300; margin-top:12px; }
+.cover-meta { margin-top:40px; width:100%; max-width:480px; margin-left:auto; margin-right:auto; }
+.mc { background:rgba(15,14,12,0.9); border:1px solid rgba(184,146,42,0.18); padding:16px 20px; margin-bottom:2px; display:flex; justify-content:space-between; align-items:center; }
+.mc .l { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.3em; color:var(--gold); text-transform:uppercase; opacity:0.7; }
+.mc .v { font-size:15px; color:var(--parchment); }
+.cover-foot { margin-top:40px; font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.3em; color:var(--gold); opacity:0.35; text-transform:uppercase; }
+.page { background:var(--parchment); width:100%; max-width:720px; margin:0 auto; }
+.sec { padding:48px 28px; border-bottom:1px solid var(--parchment-dark); width:100%; }
+.sec:last-child { border-bottom:none; }
+.sec-num { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.45em; color:var(--gold); text-transform:uppercase; display:block; margin-bottom:8px; }
+.sec-title { font-family:'Cinzel',serif; font-size:clamp(16px,4vw,22px); font-weight:700; color:var(--ink); line-height:1.25; margin-bottom:6px; }
+.sec-sub { font-style:italic; font-size:16px; color:var(--text-3); font-weight:300; margin-bottom:20px; }
+.sec-rule { width:36px; height:2px; background:var(--gold); margin-bottom:20px; }
+p { margin-bottom:14px; color:var(--text-2); font-size:16px; }
+p:last-child { margin-bottom:0; }
+strong { color:var(--text); font-weight:600; }
+.voice-card { background:var(--parchment-mid); border-left:3px solid var(--gold); padding:16px 18px; margin-bottom:10px; width:100%; }
+.voice-card .lbl { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:8px; opacity:0.85; }
+.voice-card ul { margin-left:18px; color:var(--text-2); }
+.voice-card li { font-size:15px; margin-bottom:4px; }
+.note { background:rgba(139,26,26,0.06); border-left:3px solid var(--crimson); padding:14px 18px; margin:16px 0; width:100%; }
+.note .nl { font-family:'Cinzel',serif; font-size:8px; letter-spacing:0.25em; text-transform:uppercase; color:var(--crimson); display:block; margin-bottom:6px; }
+.note p { font-size:14px; color:var(--text-2); margin-bottom:0; }
+.ds-row { background:var(--parchment); border-left:3px solid var(--parchment-dark); border-bottom:1px solid var(--parchment-dark); padding:14px 18px; width:100%; }
+.ds-row:nth-child(even) { background:var(--parchment-mid); }
+.ds-row .field-name { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text); font-weight:700; margin-bottom:4px; }
+.ds-row .field-format { font-size:13px; color:var(--gold); font-family:'Cinzel',serif; letter-spacing:0.1em; margin-bottom:4px; }
+.ds-row .field-note { font-size:14px; color:var(--text-2); margin-bottom:4px; }
+.ds-row .tag-req { display:inline-block; font-family:'Cinzel',serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; padding:2px 8px; border:1px solid var(--crimson); color:var(--crimson); }
+.ds-row .tag-opt { display:inline-block; font-family:'Cinzel',serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; padding:2px 8px; border:1px solid var(--forest); color:var(--forest); }
+.ds-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--ink); font-weight:700; padding:10px 18px; background:var(--ink); color:var(--gold); display:block; margin-top:14px; }
+.setup-group { margin-bottom:24px; }
+.setup-title { font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink); font-weight:700; padding-bottom:8px; border-bottom:1px solid var(--parchment-dark); margin-bottom:2px; }
+.step { display:flex; gap:0; margin-bottom:2px; width:100%; }
+.step-num { background:var(--ink); min-width:40px; width:40px; display:flex; align-items:flex-start; justify-content:center; padding-top:16px; flex-shrink:0; }
+.step-num span { font-family:'Cinzel',serif; font-size:10px; color:var(--gold); font-weight:700; }
+.step-body { background:var(--parchment-mid); padding:14px 16px; border-left:2px solid var(--border); flex:1; min-width:0; }
+.step-body.active { background:linear-gradient(135deg,#e4dbc4,var(--parchment-mid)); border-left-color:var(--gold); }
+.step-head { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--text); font-weight:700; margin-bottom:6px; }
+.step-body p { font-size:14.5px; margin-bottom:6px; }
+.step-body p:last-child { margin-bottom:0; }
+.step-body ul { margin-left:18px; color:var(--text-2); }
+.step-body li { font-size:14px; margin-bottom:4px; }
+.code { font-family:'Courier New',monospace; background:var(--ink); color:var(--gold-pale); padding:1px 7px; font-size:12px; border-radius:2px; display:inline-block; word-break:break-all; }
+.seq-header { background:var(--ink); padding:16px 20px; margin-bottom:0; width:100%; }
+.seq-name { font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; font-weight:700; display:block; margin-bottom:6px; }
+.seq-name.wedding { color:#c8a875; }
+.seq-name.corp    { color:#8ab0c4; }
+.seq-name.personal{ color:#a8c48a; }
+.seq-name.react   { color:#c4a8c8; }
+.seq-trigger { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; padding:3px 10px; border:1px solid; display:inline-block; }
+.seq-trigger.wedding { color:#c8a875; border-color:#c8a875; }
+.seq-trigger.corp    { color:#8ab0c4; border-color:#8ab0c4; }
+.seq-trigger.personal{ color:#a8c48a; border-color:#a8c48a; }
+.seq-trigger.react   { color:#c4a8c8; border-color:#c4a8c8; }
+.prereq { background:var(--parchment-mid); border-left:3px solid var(--gold); padding:14px 18px; margin:2px 0; width:100%; }
+.prereq.slate { border-left-color:var(--slate); }
+.prereq .pl { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; display:block; margin-bottom:8px; }
+.prereq .pl.gold { color:var(--gold); }
+.prereq .pl.slate { color:var(--slate); }
+.prereq ul { margin-left:18px; color:var(--text-2); }
+.prereq li { font-size:14.5px; margin-bottom:4px; }
+.email-card { background:var(--parchment); border:1px solid var(--parchment-dark); margin-top:2px; width:100%; }
+.email-meta { background:var(--parchment-mid); padding:12px 18px; border-bottom:1px solid var(--parchment-dark); }
+.email-num { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:700; display:block; margin-bottom:4px; }
+.email-timing { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text); display:block; margin-bottom:4px; }
+.email-purpose { font-size:13px; font-style:italic; color:var(--text-3); }
+.email-body { padding:16px 18px; }
+.email-field { margin-bottom:14px; }
+.email-field:last-child { margin-bottom:0; }
+.field-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:4px; opacity:0.8; }
+.field-val { font-size:15px; color:var(--text); background:var(--parchment-mid); padding:10px 14px; border-left:2px solid var(--border-s); width:100%; }
+.field-val.copy { font-size:14.5px; color:var(--text-2); line-height:1.75; white-space:pre-wrap; word-break:break-word; }
+.field-val em { color:var(--text-3); font-style:italic; }
+.track-row { border-bottom:1px solid var(--parchment-dark); padding:14px 18px; background:var(--parchment); width:100%; }
+.track-row:nth-child(even) { background:var(--parchment-mid); }
+.track-row .tm { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text); font-weight:700; margin-bottom:4px; }
+.track-row .tt { font-size:14px; color:var(--gold); margin-bottom:4px; }
+.track-row .td { font-size:14px; color:var(--text-2); }
+.pq { border-top:1px solid var(--border-s); border-bottom:1px solid var(--border-s); padding:24px 20px; margin:24px 0; text-align:center; background:linear-gradient(180deg,var(--parchment-mid),var(--parchment)); width:100%; }
+.pq p { font-style:italic; font-size:19px; line-height:1.5; color:var(--ink); font-weight:400; margin:0; }
+.doc-footer { background:var(--ink); padding:36px 24px; text-align:center; width:100%; }
+</style>
+</head>
+<body>
+
+<!-- ── JRZ CONTEXT BANNER ── -->
+<div class="jrz-banner">
+  <div class="jrz-topbar">
+    <span class="jrz-logo">JRZ Consulting Solutions</span>
+    <span class="jrz-tag">Work Sample · Small Business Email Marketing</span>
+  </div>
+  <div class="jrz-body">
+    <div class="jrz-eyebrow">
+      <div class="jrz-eyebrow-line"></div>
+      <span class="jrz-eyebrow-text">Engagement Overview</span>
+    </div>
+    <div class="jrz-headline">Greenbelt Event Rentals — Email Marketing Execution Plan</div>
+    <p class="jrz-sub">An Austin-based event rental company with strong reviews but <strong>no email infrastructure</strong>. Following a full business audit, I designed and documented a complete Mailchimp automation system — 4 sequences, 12 emails — built around the owner's personal voice and existing customer data. The goal: turn one-time renters into repeat clients and referral sources with zero ongoing manual effort.</p>
+    <div class="jrz-cards">
+      <div class="jrz-card">
+        <span class="jrz-card-label">Problem</span>
+        <span class="jrz-card-val">Owner managed all follow-up manually. No CRM, no automation, no post-event touchpoints. Revenue was transactional with no retention system.</span>
+      </div>
+      <div class="jrz-card">
+        <span class="jrz-card-label">Solution</span>
+        <span class="jrz-card-val">Designed 4 audience-segmented automation sequences (wedding anniversary, corporate seasonal, personal event, inquiry reactivation), full dataset schema, Mailchimp setup guide, and brand voice standards.</span>
+      </div>
+      <div class="jrz-card">
+        <span class="jrz-card-label">Deliverable</span>
+        <span class="jrz-card-val"><strong>Turnkey implementation document</strong> — every email written, every automation configured, ready for client to deploy without a developer or agency.</span>
+      </div>
+    </div>
+    <div class="jrz-divider"></div>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <span class="eyebrow">JRZ Consulting Solutions · Greenbelt Event Rentals</span>
+  <div class="rule"></div>
+  <h1>EMAIL MARKETING<br><em>Execution Plan</em></h1>
+  <div class="cover-sub">4 Sequences · 12 Emails · Full Mailchimp Setup</div>
+  <div class="rule s"></div>
+  <div class="cover-meta">
+    <div class="mc"><span class="l">Sequences</span><span class="v">4</span></div>
+    <div class="mc"><span class="l">Total Emails</span><span class="v">12</span></div>
+    <div class="mc"><span class="l">Platform</span><span class="v">Mailchimp Standard</span></div>
+    <div class="mc"><span class="l">Date</span><span class="v">April 2026</span></div>
+  </div>
+  <div class="cover-foot">Prepared by JRZ Consulting Solutions · For Tom · Greenbelt Event Rentals</div>
+</div>
+
+<div class="page">
+
+<div class="sec">
+  <span class="sec-num">00 · Brand Voice Profile</span>
+  <div class="sec-title">How Tom Talks — And How These Emails Sound</div>
+  <div class="sec-sub">Every email is written in Tom's voice. These rules govern it.</div>
+  <div class="sec-rule"></div>
+  <p>Tom's name appears in every single client review. Not the company name — Tom. That is the competitive moat. These emails don't sound like "Greenbelt Event Rentals Marketing." They sound like Tom personally reaching out because he remembers you.</p>
+  <div class="voice-card"><span class="lbl">Tone</span><ul><li>Warm, direct, personal — never salesy</li><li>Confident without being pushy</li><li>Conversational — writes like he talks</li><li>Proud of his work without bragging</li><li>Austin local energy — relaxed, genuine</li></ul></div>
+  <div class="voice-card"><span class="lbl">Language Choices</span><ul><li>Says "your event" not "your purchase"</li><li>Says "reach out" not "contact us"</li><li>Uses first names when known</li><li>Signs as "Tom" — not "Greenbelt Event Rentals"</li><li>Short sentences. No corporate filler.</li></ul></div>
+  <div class="voice-card"><span class="lbl">What Tom Is Known For (Per Reviews)</span><ul><li>"Responsive, friendly, thoughtful, and helpful"</li><li>"Went above and beyond"</li><li>"Professional and courteous"</li><li>"Made sure every detail was taken care of"</li><li>"Fantastic price" — transparency matters to him</li></ul></div>
+  <div class="voice-card"><span class="lbl">What to Avoid</span><ul><li>Exclamation marks every sentence</li><li>Marketing buzzwords ("amazing," "incredible," "exclusive")</li><li>Pressure or urgency tactics</li><li>Long paragraphs — people read on phones</li><li>Anything that sounds automated or templated</li></ul></div>
+  <div class="note" style="margin-top:16px;"><span class="nl">Important</span><p>Tom offers discounts for veterans, healthcare professionals, and teachers. Reference this where appropriate — it's a genuine differentiator and a values signal that resonates with his audience.</p></div>
+</div>
+
+<div class="sec">
+  <span class="sec-num">01 · Dataset Prerequisites</span>
+  <div class="sec-title">What the Spreadsheet Needs Before Setup Begins</div>
+  <div class="sec-sub">Confirm these fields exist and are correctly formatted before exporting any CSV.</div>
+  <div class="sec-rule"></div>
+  <p>Each sequence fires based on a specific field. If a field is missing or stored as text instead of a date, the automation will not trigger correctly. Review every field below before import.</p>
+  <span class="ds-label">Universal — Required for All Sequences</span>
+  <div class="ds-row"><div class="field-name">First Name</div><div class="field-format">Format: Text</div><div class="field-note">Used in email greeting: "Hi [First Name]"</div><span class="tag-req">Required</span></div>
+  <div class="ds-row"><div class="field-name">Email Address</div><div class="field-format">Format: Valid email</div><div class="field-note">Primary send address. Remove duplicates before import.</div><span class="tag-req">Required</span></div>
+  <div class="ds-row"><div class="field-name">Segment Tag</div><div class="field-format">Values: WEDDING / CORPORATE / PERSONAL / INQUIRY</div><div class="field-note">Must be exactly one of these four values. Routes each contact into the correct sequence.</div><span class="tag-req">Required</span></div>
+  <span class="ds-label">Sequence-Specific Fields</span>
+  <div class="ds-row"><div class="field-name">Event Date</div><div class="field-format">Format: MM/DD/YYYY — must be a Date field, not text</div><div class="field-note">Wedding date or personal event date. Triggers the anniversary and pre-event automations annually. <strong>If stored as text, the trigger will not fire.</strong></div><span class="tag-req">Required — Wedding &amp; Personal</span></div>
+  <div class="ds-row"><div class="field-name">Last Booking Date</div><div class="field-format">Format: MM/DD/YYYY — must be a Date field</div><div class="field-note">Date of most recent booking. Used for context in Corporate sequence.</div><span class="tag-req">Required — Corporate</span></div>
+  <div class="ds-row"><div class="field-name">Inquiry Date</div><div class="field-format">Format: MM/DD/YYYY — must be a Date field</div><div class="field-note">Date of original inquiry. Contacts in this segment had no completed booking.</div><span class="tag-req">Required — Reactivation</span></div>
+  <div class="ds-row"><div class="field-name">Event Type</div><div class="field-format">Format: Text (e.g., Birthday, Graduation, Wedding)</div><div class="field-note">Allows more personalized copy when available.</div><span class="tag-opt">Optional</span></div>
+  <div class="note" style="margin-top:16px;"><span class="nl">Date Formatting Is Critical</span><p>In Excel, format the Event Date, Last Booking Date, and Inquiry Date columns as <strong>Date</strong> before exporting the CSV. Right-click the column → Format Cells → Date. If these are stored as plain text, Mailchimp cannot use them as automation triggers.</p></div>
+  <p style="margin-top:16px;">Export four CSV files — one per segment — named clearly: <span class="code">wedding_contacts.csv</span>, <span class="code">corporate_contacts.csv</span>, <span class="code">personal_contacts.csv</span>, <span class="code">inquiry_contacts.csv</span>.</p>
+</div>
+
+<div class="sec">
+  <span class="sec-num">02 · Mailchimp Setup Instructions</span>
+  <div class="sec-title">Step-by-Step Configuration</div>
+  <div class="sec-sub">Complete these in order before building any sequence.</div>
+  <div class="sec-rule"></div>
+  <div class="setup-group">
+    <div class="setup-title">Part A — Account &amp; Plan</div>
+    <div class="step"><div class="step-num"><span>1</span></div><div class="step-body active"><div class="step-head">Confirm Standard Plan</div><p>Log in → click account name (top right) → <strong>Account &amp; Billing → Billing</strong>. Confirm the plan shows <strong>Standard</strong>. If Free or Essentials, upgrade now.</p><p>Free plan lost all automation access in June 2025. Essentials caps automations at 4 steps. Standard is required. For 1,000 contacts, Standard costs approximately <strong>$20/month</strong>.</p></div></div>
+    <div class="step"><div class="step-num"><span>2</span></div><div class="step-body"><div class="step-head">Set Sender Identity</div><p>Go to <strong>Account → Defaults</strong>. Set From Name to <strong>"Tom at Greenbelt Event Rentals"</strong> — not just the company name. Set Reply-To to Tom's direct email. Verify the sending domain under <strong>Account &amp; Billing → Verified Domains</strong>.</p></div></div>
+  </div>
+  <div class="setup-group">
+    <div class="setup-title">Part B — Audience &amp; Custom Fields</div>
+    <div class="step"><div class="step-num"><span>3</span></div><div class="step-body active"><div class="step-head">Add Custom Date Fields</div><p>Go to <strong>Audience → Manage Audience → Settings → Audience fields and *|MERGE|* tags</strong>. Scroll to bottom → <strong>Add A Field</strong>. Add these three fields — type must be <strong>Date</strong> for each:</p><ul><li><strong>Event Date</strong> → Tag: <span class="code">EVENTDATE</span></li><li><strong>Last Booking Date</strong> → Tag: <span class="code">LASTBOOK</span></li><li><strong>Inquiry Date</strong> → Tag: <span class="code">INQUIRYDT</span></li></ul><p style="margin-top:8px;font-size:13px;color:var(--text-3);">Save after adding each. These are the trigger fields for all four automations.</p></div></div>
+    <div class="step"><div class="step-num"><span>4</span></div><div class="step-body"><div class="step-head">Import Contacts by Segment</div><p>Go to <strong>Audience → Add Contacts → Import Contacts</strong>. Import each CSV file separately. On the import screen, map each column to the correct Mailchimp field — especially confirm the date columns map to the Date fields from Step 3.</p><p>After each import, apply the corresponding tag: <span class="code">WEDDING</span>, <span class="code">CORPORATE</span>, <span class="code">PERSONAL</span>, or <span class="code">INQUIRY</span>. All four imports go into <strong>the same Mailchimp audience</strong>.</p></div></div>
+    <div class="step"><div class="step-num"><span>5</span></div><div class="step-body"><div class="step-head">Create Four Audience Segments</div><p>Go to <strong>Audience → Segments → Create Segment</strong>. Create one segment per tag:</p><ul><li><strong>Wedding Clients</strong> — Tag is <span class="code">WEDDING</span></li><li><strong>Corporate Clients</strong> — Tag is <span class="code">CORPORATE</span></li><li><strong>Personal Clients</strong> — Tag is <span class="code">PERSONAL</span></li><li><strong>Inquiry Reactivation</strong> — Tag is <span class="code">INQUIRY</span></li></ul></div></div>
+  </div>
+  <div class="setup-group">
+    <div class="setup-title">Part C — Building Automations</div>
+    <div class="step"><div class="step-num"><span>6</span></div><div class="step-body active"><div class="step-head">Build the Master Email Template First</div><p>Go to <strong>Content → Email Templates → Create Template</strong>. Build one clean mobile-responsive template: Greenbelt logo at top, body text area, single CTA button linking to <strong>greenbelteventrentals.com/contact</strong>, Tom's signature at bottom. Use this template for all 12 emails — only the copy changes.</p></div></div>
+    <div class="step"><div class="step-num"><span>7</span></div><div class="step-body"><div class="step-head">Create Each Classic Automation</div><p>Go to <strong>Automations → Classic Automations → Create</strong>. Select <strong>Date Based</strong>. Name it clearly. Set the trigger field, timing, and segment filter per the sequence specs below. Add each email with the correct delay. Start sending only after all emails in the sequence are approved by Tom.</p></div></div>
+    <div class="step"><div class="step-num"><span>8</span></div><div class="step-body"><div class="step-head">Wedding &amp; Personal — Use Recurring Date Trigger</div><p>When configuring these two automations, select <strong>Recurring Date</strong> (not Specific Date) as the trigger type. This re-enters each contact into the sequence every year automatically. Corporate and Reactivation use different logic — see their individual setup notes below.</p></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <span class="sec-num">03 · Sequence One</span>
+  <div class="seq-header"><span class="seq-name wedding">Wedding Anniversary Sequence</span><span class="seq-trigger wedding">Recurring Date · EVENTDATE · Annual</span></div>
+  <div class="prereq" style="margin-top:2px;"><span class="pl gold">Dataset Prerequisites</span><ul><li>Tag: <strong>WEDDING</strong></li><li><strong>EVENTDATE</strong>: Wedding date as Date field — required for trigger</li><li><strong>First Name</strong>: Required</li></ul></div>
+  <div class="prereq slate" style="margin-top:2px;"><span class="pl slate">Mailchimp Configuration</span><ul><li>Type: Classic Automation → Date Based</li><li>Trigger field: <span class="code">EVENTDATE</span></li><li>Trigger type: <strong>Recurring Date</strong> (annual)</li><li>Segment filter: Tag is <span class="code">WEDDING</span></li><li>From name: <strong>Tom at Greenbelt Event Rentals</strong></li></ul></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 01 of 03</span><span class="email-timing">⏱ 7 days BEFORE EVENTDATE</span><span class="email-purpose">Booking prompt while they're thinking ahead</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Your anniversary is coming up — thinking of celebrating?</div></div><div class="email-field"><span class="field-label">Preview Text</span><div class="field-val">It's almost been a year. If you're planning something, we'd love to help again.</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Hard to believe it's almost been a year since we set up for your big day. I hope it was everything you hoped for.
+
+If you're thinking about doing something to mark the occasion — a backyard dinner, a gathering with the people who were there — we'd love to be part of that too. We've got tents, tables, linens, and everything in between, same as before.
+
+Just reach out and let me know what you're thinking. No pressure — just wanted to make sure you knew we're here if you need us.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412 · greenbelteventrentals.com/contact</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Get a Quote</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 02 of 03</span><span class="email-timing">⏱ ON the EVENTDATE (anniversary day)</span><span class="email-purpose">Personal touch — no ask, just warmth</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Happy Anniversary 🎉</div></div><div class="email-field"><span class="field-label">Preview Text</span><div class="field-val">One year. Hope it's been a great one.</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Just wanted to say Happy Anniversary. One year since the wedding — I hope the day was everything you'd dreamed, and the year since has been even better.
+
+It was genuinely an honor to be part of your day. Thank you for trusting us with it.
+
+Wishing you both a wonderful anniversary.
+
+— Tom
+Greenbelt Event Rentals</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">See Our Rentals</div></div><div class="email-field"><span class="field-label">Note</span><div class="field-val"><em>No hard ask in this email. Pure warm touch. The referral ask comes in Email 3.</em></div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 03 of 03</span><span class="email-timing">⏱ 21 days AFTER EVENTDATE</span><span class="email-purpose">Referral ask — soft and natural</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Know anyone planning a wedding or event?</div></div><div class="email-field"><span class="field-label">Preview Text</span><div class="field-val">If you've got friends in the planning stage, we'd love the introduction.</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Hope the anniversary went well — whether you celebrated big or kept it quiet, I hope it was a good one.
+
+Quick ask: if you have any friends or family in the middle of planning a wedding or a big event, feel free to send them our way. We're a small, local operation and most of our new clients come from people who've worked with us before.
+
+You can just forward this email or pass along my number — (512) 710-8412. We'll take good care of them, same as we did for you.
+
+Thanks, *|FNAME|*. Hope to see you again sometime.
+
+— Tom
+Greenbelt Event Rentals
+greenbelteventrentals.com</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Share Our Contact Page</div></div></div></div>
+</div>
+
+<div class="sec">
+  <span class="sec-num">04 · Sequence Two</span>
+  <div class="seq-header"><span class="seq-name corp">Corporate Seasonal Sequence</span><span class="seq-trigger corp">Scheduled Campaign · Quarterly · CORPORATE Tag</span></div>
+  <div class="prereq" style="margin-top:2px;"><span class="pl gold">Dataset Prerequisites</span><ul><li>Tag: <strong>CORPORATE</strong></li><li><strong>LASTBOOK</strong>: Last booking date as Date field — for context</li><li><strong>First Name</strong>: Required</li><li><strong>Company Name</strong>: Optional but improves personalization</li></ul></div>
+  <div class="prereq slate" style="margin-top:2px;"><span class="pl slate">Mailchimp Configuration — Different From Other Sequences</span><ul><li>This is <strong>NOT a date-based automation</strong> — it is a <strong>scheduled regular campaign</strong></li><li>Go to <strong>Campaigns → Create Campaign → Regular Email</strong></li><li>Select audience segment: <span class="code">CORPORATE</span></li><li>Schedule four times per year: <strong>Early March, Early June, Early October, Early January</strong></li><li>October is the most important — holiday party season</li><li>From name: <strong>Tom at Greenbelt Event Rentals</strong></li></ul></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 01 of 03</span><span class="email-timing">⏱ Send: Early October</span><span class="email-purpose">Holiday party booking prompt — highest priority send</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Holiday party season is filling up — wanted to give you first notice</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Holiday party season is coming up fast and our schedule tends to fill earlier than people expect. I wanted to reach out to folks we've worked with before first, before we open up availability to new inquiries.
+
+If your team is planning an end-of-year event — whether it's a holiday party, a company gathering, or anything that needs a tent, tables, and setup — we're ready to go.
+
+Let me know what you're thinking and I'll hold availability for you through the end of the month.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412 · greenbelteventrentals.com/contact</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Check Availability</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 02 of 03</span><span class="email-timing">⏱ Send: Early March</span><span class="email-purpose">Spring events and team gatherings</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Spring event season — are you planning anything?</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Spring in Austin is one of the best times of year for outdoor events — and a lot of companies take advantage of it for team gatherings, appreciation events, and client entertaining before summer heat sets in.
+
+If you've got anything on the calendar — or are starting to plan — we can help with tents, tables, chairs, dance floors, and everything in between. Same team, same level of service you've come to expect.
+
+Just send me a message with your date and what you're thinking. I'll get back to you same day.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412 · greenbelteventrentals.com/contact</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Get a Quote</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 03 of 03</span><span class="email-timing">⏱ Send: Early January</span><span class="email-purpose">Q1 planning — early calendar lock</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Planning any events this year? Here's a heads up on availability</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+New year. If you're starting to map out events, now is a good time to put a hold on dates. Austin's spring and fall windows fill up faster than most people expect, especially for corporate events with specific date requirements.
+
+We can hold a date with just a conversation — no deposit until you're ready to confirm. Just let me know what you're looking at and I'll check availability.
+
+Hope the new year is off to a good start for your team.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412 · greenbelteventrentals.com/contact</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Check Dates</div></div></div></div>
+</div>
+
+<div class="sec">
+  <span class="sec-num">05 · Sequence Three</span>
+  <div class="seq-header"><span class="seq-name personal">Personal / Birthday / Backyard Sequence</span><span class="seq-trigger personal">Recurring Date · EVENTDATE · 60 Days Before · Annual</span></div>
+  <div class="prereq" style="margin-top:2px;"><span class="pl gold">Dataset Prerequisites</span><ul><li>Tag: <strong>PERSONAL</strong></li><li><strong>EVENTDATE</strong>: Original event date as Date field</li><li><strong>First Name</strong>: Required</li><li><strong>Event Type</strong>: Optional</li></ul></div>
+  <div class="prereq slate" style="margin-top:2px;"><span class="pl slate">Mailchimp Configuration</span><ul><li>Type: Classic Automation → Date Based</li><li>Trigger field: <span class="code">EVENTDATE</span></li><li>Trigger type: <strong>Recurring Date</strong> — set to <strong>60 days before</strong></li><li>Segment filter: Tag is <span class="code">PERSONAL</span></li></ul></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 01 of 03</span><span class="email-timing">⏱ 60 days BEFORE EVENTDATE anniversary</span><span class="email-purpose">Early planning prompt</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Doing something again this year?</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+You're coming up on about two months before the anniversary of your event last year. I just wanted to reach out and see if you're planning something again — or if there's anything on the calendar we can help with.
+
+Whether it's the same kind of setup or something different, feel free to send me the details and I'll put together a quick quote. We try to get back to everyone same day.
+
+Hope things have been good since we last worked together.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412 · greenbelteventrentals.com/contact</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Request a Quote</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 02 of 03</span><span class="email-timing">⏱ 30 days BEFORE EVENTDATE anniversary</span><span class="email-purpose">Availability nudge</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">About a month out — availability is going fast this season</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Just a quick follow-up — we're heading into a busy stretch and I wanted to make sure you had a chance to lock in dates before things fill up.
+
+If you're still thinking about planning something, send me your date and what you're picturing. Even just a rough idea is enough for me to check availability and give you a ballpark.
+
+And if the timing doesn't work out this year, no worries — we'll be here when you need us.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Check Availability</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 03 of 03</span><span class="email-timing">⏱ 30 days AFTER EVENTDATE anniversary</span><span class="email-purpose">Referral ask — relaxed, post-season</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Know anyone planning a party or event?</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Hope things are going well. Quick ask — if you know anyone in the area who's planning a birthday, graduation, backyard party, or really any kind of event, feel free to pass along our info.
+
+We're a small, local operation and most of our business comes from people who've worked with us before recommending us to their friends and family. It genuinely makes a difference.
+
+Just forward this email or give them my number: (512) 710-8412. We'll take good care of them.
+
+Thanks, *|FNAME|* — it means a lot.
+
+— Tom
+Greenbelt Event Rentals · greenbelteventrentals.com</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Share Our Page</div></div></div></div>
+</div>
+
+<div class="sec">
+  <span class="sec-num">06 · Sequence Four</span>
+  <div class="seq-header"><span class="seq-name react">Inquiry Reactivation Sequence</span><span class="seq-trigger react">Tag Added · INQUIRY · One-Time</span></div>
+  <div class="prereq" style="margin-top:2px;"><span class="pl gold">Dataset Prerequisites</span><ul><li>Tag: <strong>INQUIRY</strong> — contacts who inquired but did <strong>not</strong> complete a booking</li><li><strong>INQUIRYDT</strong>: Inquiry date as Date field</li><li><strong>First Name</strong>: Required</li></ul></div>
+  <div class="prereq slate" style="margin-top:2px;"><span class="pl slate">Mailchimp Configuration</span><ul><li>Type: Classic Automation → Custom → Tag-Based Trigger</li><li>Trigger: <strong>Contact is tagged</strong> with <span class="code">INQUIRY</span></li><li>This is a <strong>one-time sequence</strong></li><li>Email 1 fires same day tag is added; Emails 2 and 3 fire by delay</li></ul></div>
+  <div class="note" style="margin-top:2px;"><span class="nl">Note on Initial Import</span><p>When importing this list for the first time, all contacts receive Email 1 within 24 hours. If the list is large, stagger the import across 2–3 days to avoid a deliverability spike.</p></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 01 of 03</span><span class="email-timing">⏱ Day 0 — Immediately on tag applied</span><span class="email-purpose">Re-open the door — warm, no pressure</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Still planning an event? We'd love to help</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+You reached out to us a while back about renting equipment for an event. I'm not sure what happened on our end or whether your plans changed — but I wanted to circle back and check in.
+
+If you're still in the planning stage — or thinking about hosting something soon — we'd love to help. We've got tents, tables, chairs, linens, dance floors, and everything in between. Transparent pricing, and you deal directly with me throughout the process.
+
+Just reply to this email or give me a call at (512) 710-8412 and we'll figure out what works.
+
+— Tom
+Greenbelt Event Rentals
+greenbelteventrentals.com/contact</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Get a Quote</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 02 of 03</span><span class="email-timing">⏱ 10 days after Email 01</span><span class="email-purpose">Address price — the most common objection</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Transparent pricing — here's what things actually cost</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Sometimes people check our pricing page and aren't sure if it fits their budget — so I wanted to be direct about what things actually cost.
+
+Our tent packages start at $799 for 40 guests, $1,199 for 60 guests, and $1,349 for 80 guests. That includes the tent, tables, and chairs. Delivery starts at $125 for Austin. We can add linens, dance floors, lighting, and more depending on what you need.
+
+No hidden fees. No bait-and-switch. I'd rather give you a real number upfront than waste either of our time.
+
+If budget is a concern, tell me what you're working with and I'll put together something that fits. We also offer discounts for veterans, healthcare workers, and teachers.
+
+— Tom
+Greenbelt Event Rentals
+(512) 710-8412 · greenbelteventrentals.com</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">See All Packages</div></div></div></div>
+  <div class="email-card"><div class="email-meta"><span class="email-num">Email 03 of 03</span><span class="email-timing">⏱ 14 days after Email 02</span><span class="email-purpose">Final soft close — leave the door open</span></div><div class="email-body"><div class="email-field"><span class="field-label">Subject Line</span><div class="field-val">Last note from me — whenever you're ready, we're here</div></div><div class="email-field"><span class="field-label">Email Copy</span><div class="field-val copy">Hi *|FNAME|*,
+
+Last note from me — I don't want to crowd your inbox.
+
+If your event plans come together and you need tent and equipment rentals in the Austin area, we'd love to be your first call. We're a small, owner-operated business and we take every event seriously — no matter the size.
+
+Whenever you're ready: (512) 710-8412 or greenbelteventrentals.com/contact.
+
+Take care, *|FNAME|* — hope to work with you someday.
+
+— Tom
+Greenbelt Event Rentals</div></div><div class="email-field"><span class="field-label">CTA Button</span><div class="field-val">Contact Tom Directly</div></div></div></div>
+</div>
+
+<div class="sec">
+  <span class="sec-num">07 · What to Track After Launch</span>
+  <div class="sec-title">The Numbers That Actually Matter</div>
+  <div class="sec-sub">Check monthly in Mailchimp Reports. Adjust copy on anything underperforming.</div>
+  <div class="sec-rule"></div>
+  <div class="track-row"><div class="tm">Open Rate</div><div class="tt">Target: ≥ 25%</div><div class="td">Reports → Campaign → Overview. If below target, test a more personal subject line. First-name personalization in the subject can add 5–10%.</div></div>
+  <div class="track-row"><div class="tm">Click Rate</div><div class="tt">Target: ≥ 3%</div><div class="td">If low, simplify the CTA. One button, one ask per email. No competing links.</div></div>
+  <div class="track-row"><div class="tm">Unsubscribe Rate</div><div class="tt">Target: ≤ 0.5%</div><div class="td">If above 0.5%, reduce send frequency or examine tone. High unsubscribes means too much pressure or wrong timing.</div></div>
+  <div class="track-row"><div class="tm">Replies Received</div><div class="tt">Target: Any response is a win</div><div class="td">Reply-to goes directly to Tom. Respond same day. Treat each reply as a warm lead who read the email and engaged.</div></div>
+  <div class="track-row"><div class="tm">New Bookings from Email</div><div class="tt">Target: ≥ 5 / month by Month 3</div><div class="td">Ask new clients at booking: "How did you hear about us?" Track this manually if needed. This is the primary revenue metric.</div></div>
+  <div class="pq" style="margin-top:24px;"><p>"The emails do the reaching out. Tom does the closing. The system works when both sides are running."</p></div>
+</div>
+
+</div>
+
+<div class="doc-footer">
+  <div style="width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 16px;"></div>
+  <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.45;">JRZ Consulting Solutions · April 2026 · Greenbelt Event Rentals</div>
+</div>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenbelt Event Rentals · Email Marketing Execution Plan</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root {
